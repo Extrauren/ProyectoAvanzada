@@ -6,13 +6,26 @@
     <properties>
         <java.version>1.8</java.version>
     </properties>
-
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
     <dependencies>
-    <dependency>
+        <!--Biblioteca para generar datos aleatorios-->
+        <dependency>
+            <groupId>com.github.TallerIngenieriaDelSoftware</groupId>
+            <artifactId>GeneradorDatosINE</artifactId>
+            <version>v1.0.0</version>
+        </dependency>
+
+        <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.12</version>
         <scope>test</scope>
+
     </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
