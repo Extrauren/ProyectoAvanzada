@@ -33,7 +33,7 @@ public class CRUDCliente {
         mapaClientes.remove(NIF);
     }
 
-    public void cambiaTarifa(String NIF, int tarifa){               //Luego se cambia por la clase Tarifa
+    public void cambiaTarifa(String NIF, Tarifa tarifa){               //Luego se cambia por la clase Tarifa
         cliente = mapaClientes.get(NIF);
         cliente.setTarifa(tarifa);
     }

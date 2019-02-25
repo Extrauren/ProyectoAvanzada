@@ -8,9 +8,9 @@ public class Factura {
     private Tarifa tarifa;
     private Calendar fechaFactura;
     private Calendar periodoFac;
-    private int importe;
+    private float importe;
 
-    Factura(String codfac, Tarifa tarifa, Calendar fechaFactura, Calendar periodoFac, int importe){
+    public Factura(String codfac, Tarifa tarifa, Calendar fechaFactura, Calendar periodoFac, float importe){
         this.codfac = codfac;
         this.tarifa = tarifa;
         this.fechaFactura  = fechaFactura;
