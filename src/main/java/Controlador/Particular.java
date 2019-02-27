@@ -10,4 +10,8 @@ public class Particular extends Cliente {
         super(nombre, NIF, direccion, correo, fechaAlta, tarifa);
         this.apellido = apellido;
     }
+
+    public Particular() {
+        super();
+    }
 }

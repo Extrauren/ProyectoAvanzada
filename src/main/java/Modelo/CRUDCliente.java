@@ -40,9 +40,9 @@ public class CRUDCliente {
         return mapaClientes.get(NIF);
     }
 
-    public  HashMap<String, Cliente> listarClientes(){
+    public  void listarClientes(){
 
-        return mapaClientes;
+        System.out.println(mapaClientes.toString());
     }
 
 }

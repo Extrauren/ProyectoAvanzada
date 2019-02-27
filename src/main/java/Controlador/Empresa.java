@@ -7,4 +7,7 @@ public class Empresa extends Cliente {
         super(nombre, NIF, direccion, correo, fechaAlta, tarifa);
     }
 
+    public Empresa() {
+        super();
+    }
 }

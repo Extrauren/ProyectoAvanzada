@@ -21,6 +21,10 @@ public class Cliente {
         this.tarifa=tarifa;
     }
 
+    public Cliente() {
+
+    }
+
     public Calendar getFechaAlta() {
         return fechaAlta;
     }
