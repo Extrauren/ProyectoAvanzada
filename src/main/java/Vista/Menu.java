@@ -28,6 +28,7 @@ public class Menu {
                         switch (opcion) {
                             case 1:
                                 System.out.println("Has seleccionado la opcion 1, dar de alta un nuevo cliente");
+                                //añadir los metodos anteriormente hechos aqui, en cada una dodnde toque
                                 break;
                             case 2:
                                 System.out.println("Has seleccionado la opcion 2, borrar un cliente");
