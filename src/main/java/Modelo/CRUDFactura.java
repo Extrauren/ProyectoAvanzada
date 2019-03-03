@@ -14,16 +14,19 @@ public class CRUDFactura {
     HashMap<String, Factura> mapaFactuarsCod = new HashMap<>();             //codfac como clave
 
 
-    public Factura emitirFactura(String codfac, Tarifa tarifa, Calendar periodoFac){
+    public void emitirFactura(String codfac, Tarifa tarifa, Calendar periodoFac){
 
         float importe = tarifa.valor;
         factura = new Factura(codfac,tarifa,Calendar.getInstance(),periodoFac,importe);
         mapaFactuarsCod.put(codfac, factura);
-        return factura;
     }
 
     public Factura getFacturaCodigo(String codfac){
         return mapaFactuarsCod.get(codfac);
+    }
+
+    public void listarFacturas(){
+        System.out.println(mapaFactuarsCod.toString());
     }
 
     /*public Factura getFacturaCliente(String NIF){

@@ -1,14 +1,14 @@
 package Modelo;
 
-import Controlador.Cliente;
-import Controlador.Empresa;
-import Controlador.Particular;
 import Controlador.Tarifa;
 import Vista.IMenu;
 import Vista.IMenuCliente;
+import Vista.IMenuFactura;
+import Vista.IMenuLlamada;
+
 import java.util.Scanner;
 
-public class CRUDMenu implements IMenu, IMenuCliente {
+public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura {
 
     Scanner sn = new Scanner(System.in);
 
@@ -83,10 +83,10 @@ public class CRUDMenu implements IMenu, IMenuCliente {
 
     @Override
     public String pideNIFCliente() {
-        String NIF;
+        String nif;
         System.out.println("Introduce el NIF del cliente: ");
-        NIF = sn.nextLine();
-        return NIF;
+        nif = sn.nextLine();
+        return nif;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class CRUDMenu implements IMenu, IMenuCliente {
     public Tarifa pideTarifaClietne() {
         Tarifa tarifa;
         int valor;
-        System.out.println("Introduce la nueva tarifa del cliente: ");
+        System.out.println("Introduce la tarifa del cliente: ");
         valor = sn.nextInt();
         tarifa = new Tarifa(valor);
         return tarifa;
@@ -130,4 +130,29 @@ public class CRUDMenu implements IMenu, IMenuCliente {
         apellido = sn.nextLine();
         return apellido;
     }
+
+    @Override
+    public int pideTelefono() {
+        int telefono;
+        System.out.println("Introduce el telefono: ");
+        telefono = sn.nextInt();
+        return telefono;
+    }
+
+    @Override
+    public float pideDuracion() {
+        float duracion;
+        System.out.println("Introduce la duracion: ");
+        duracion = sn.nextFloat();
+        return duracion;
+    }
+
+    @Override
+    public String pideCodigoFactura() {
+        String codfac;
+        System.out.println("Introduce el codigo de la factua: ");
+        codfac = sn.nextLine();
+        return codfac;
+    }
+
 }
