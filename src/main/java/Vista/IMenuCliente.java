@@ -1,8 +1,6 @@
 package Vista;
 
-import Controlador.Cliente;
 import Controlador.Tarifa;
-import java.util.Calendar;
 
 public interface IMenuCliente {
 

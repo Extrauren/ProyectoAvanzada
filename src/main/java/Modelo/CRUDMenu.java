@@ -10,7 +10,10 @@ import java.util.Scanner;
 
 public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura {
 
-    Scanner sn = new Scanner(System.in);
+    Scanner sn;
+    public CRUDMenu(){
+        sn = new Scanner(System.in);
+    }
 
     @Override
     public int pideMenuGlobal() {
@@ -23,13 +26,13 @@ public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura
 
         System.out.println("Escribe una de las opciones: ");
         int opcion = sn.nextInt();
+        sn.nextLine();
 
         return opcion;
     }
 
     @Override
     public int pideMenuCliente() {
-        int opcion;
         System.out.println("Has seleccionado la opcion 1, Clientes\n");
         System.out.println("¿Que opcion eliges?\n");
 
@@ -41,20 +44,20 @@ public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura
         System.out.println("6. Salir\n");
 
         System.out.println("Escribe una de las opciones: ");
-        opcion = sn.nextInt();
+        int opcion = sn.nextInt();
+        sn.nextLine();
         return opcion;
     }
 
     @Override
     public int pideMenuLlamadas() {
-        int opcion;
         System.out.println("¿Que opcion eliges?\n");
         System.out.println("1. Dar de alta una llamada");
         System.out.println("2. Listar las llamadas de un cliente");
         System.out.println("3. Salir\n");
         System.out.println("Escribe una de las opciones: ");
-        opcion = sn.nextInt();
-
+        int opcion = sn.nextInt();
+        sn.nextLine();
         return opcion;
     }
 
@@ -69,89 +72,82 @@ public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura
         System.out.println("4. Atras\n");
         System.out.println("Escribe una de las opciones: ");
         opcion = sn.nextInt();
+        sn.nextLine();
         return opcion;
     }
 
 
     @Override
     public String pideNombreCliente() {
-        String nombre;
         System.out.println("Introduce el nombre del cliente: ");
-        nombre = sn.nextLine();
+        String nombre = sn.nextLine();
         return nombre;
     }
 
     @Override
     public String pideNIFCliente() {
-        String nif;
         System.out.println("Introduce el NIF del cliente: ");
-        nif = sn.nextLine();
+        String nif = sn.nextLine();
         return nif;
     }
 
     @Override
     public String pideDireccionCleinte() {
-        String direccion;
         System.out.println("Introduce la direccion del cliente: ");
-        direccion= sn.nextLine();
+        String direccion= sn.nextLine();
         return direccion;
     }
 
     @Override
     public String pideCorreoCliente() {
-        String correo;
         System.out.println("Introduce el correo del cliente: ");
-        correo = sn.nextLine();
+        String correo = sn.nextLine();
         return correo;
     }
 
     @Override
     public Tarifa pideTarifaClietne() {
-        Tarifa tarifa;
-        int valor;
         System.out.println("Introduce la tarifa del cliente: ");
-        valor = sn.nextInt();
-        tarifa = new Tarifa(valor);
+        int valor = sn.nextInt();
+        Tarifa tarifa = new Tarifa(valor);
+        sn.nextLine();
         return tarifa;
     }
 
     @Override
     public String pideTipoCliente() {
-        String clase;
         System.out.println("Introduce que clase de cliente deseas crear: (particular o empresa)");
-        clase = sn.nextLine();
+        String clase = sn.nextLine();
         return clase;
     }
 
     @Override
     public String pideApellido() {
-        String apellido;
         System.out.println("Introduce el apellido del cliente: ");
-        apellido = sn.nextLine();
+        String apellido = sn.nextLine();
         return apellido;
     }
 
     @Override
     public int pideTelefono() {
-        int telefono;
         System.out.println("Introduce el telefono: ");
-        telefono = sn.nextInt();
+        int telefono = sn.nextInt();
+        sn.nextLine();
         return telefono;
     }
 
     @Override
     public float pideDuracion() {
-        float duracion;
         System.out.println("Introduce la duracion: ");
-        duracion = sn.nextFloat();
+        float duracion = sn.nextFloat();
+        sn.nextLine();
         return duracion;
     }
 
     @Override
     public String pideCodigoFactura() {
-        String codfac;
         System.out.println("Introduce el codigo de la factua: ");
-        codfac = sn.nextLine();
+        String codfac = sn.nextLine();
         return codfac;
     }
 

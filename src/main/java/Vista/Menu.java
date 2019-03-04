@@ -1,6 +1,5 @@
 package Vista;
 
-import Controlador.Llamada;
 import Controlador.Tarifa;
 import Modelo.CRUDCliente;
 import Modelo.CRUDFactura;

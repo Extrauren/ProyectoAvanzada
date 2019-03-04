@@ -34,6 +34,8 @@ public class CRUDCliente {
     public void cambiaTarifa(String NIF, Tarifa tarifa){               //Luego se cambia por la clase Tarifa
         cliente = mapaClientes.get(NIF);
         cliente.setTarifa(tarifa);
+        System.out.println(cliente.toString());
+
     }
 
     public Cliente getCliente(String NIF){

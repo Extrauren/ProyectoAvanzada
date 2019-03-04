@@ -1,6 +1,5 @@
 package Controlador;
 
-import javax.swing.table.TableRowSorter;
 import java.util.Calendar;
 
 public class Cliente {
@@ -26,16 +25,22 @@ public class Cliente {
     }
 
     public Calendar getFechaAlta() {
-        return fechaAlta;
+        return this.fechaAlta;
     }
 
     public Tarifa getTarifa() {
-        return tarifa;
+        return this.tarifa;
     }
 
     public void setTarifa(Tarifa tarifa) {
         this.tarifa = tarifa;
     }
+
+    public String toString(){
+       String cadena = this.nombre + " / " + this.NIF + " / " + this.direccion + " / " + this.correo + " / " + this.fechaAlta + " / " + this.tarifa;
+       return cadena;
+    }
+
 }
 
 
