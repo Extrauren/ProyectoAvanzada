@@ -1,8 +1,9 @@
 package Controlador;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Particular extends Cliente {
+public class Particular extends Cliente implements Serializable {
 
     private String apellido;
 

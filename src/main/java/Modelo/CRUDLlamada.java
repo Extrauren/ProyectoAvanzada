@@ -3,10 +3,11 @@ package Modelo;
 import Controlador.Cliente;
 import Controlador.Llamada;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class CRUDLlamada {
+public class CRUDLlamada implements Serializable {
 
 
     HashMap<String, Llamada> mapaLlamadas = new HashMap<>();            // NIF clave y llamada valor (posible añadir otro mapa)

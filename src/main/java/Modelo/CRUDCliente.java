@@ -4,11 +4,13 @@ import Controlador.Cliente;
 import Controlador.Empresa;
 import Controlador.Particular;
 import Controlador.Tarifa;
+import Excepciones.ClienteNoExisteException;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class CRUDCliente {
+public class CRUDCliente implements Serializable {
 
 
     HashMap<String, Cliente> mapaClientes = new HashMap<>();
@@ -27,19 +29,20 @@ public class CRUDCliente {
         mapaClientes.put(NIF, cliente);
     }
 
-    public void borrarCliente(String NIF){
+    public void borrarCliente(String NIF) throws ClienteNoExisteException{
         mapaClientes.remove(NIF);
     }
 
-    public void cambiaTarifa(String NIF, Tarifa tarifa){               //Luego se cambia por la clase Tarifa
+    public void cambiaTarifa(String NIF, Tarifa tarifa) throws  ClienteNoExisteException{//Luego se cambia por la clase Tarifa
         cliente = mapaClientes.get(NIF);
         cliente.setTarifa(tarifa);
         System.out.println(cliente.toString());
 
     }
 
-    public Cliente getCliente(String NIF){
+    public Cliente getCliente(String NIF) throws ClienteNoExisteException {
         return mapaClientes.get(NIF);
+
     }
 
     public  void listarClientes(){

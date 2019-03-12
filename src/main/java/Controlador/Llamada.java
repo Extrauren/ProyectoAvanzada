@@ -1,8 +1,9 @@
 package Controlador;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Llamada {
+public class Llamada implements Serializable {
     private int telefono;
     private Calendar fechaLlamada;
     private float duracion;

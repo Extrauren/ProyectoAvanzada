@@ -1,4 +1,4 @@
-package Vista;
+package Ejecutar;
 
 import Controlador.Tarifa;
 import Modelo.CRUDCliente;
@@ -6,16 +6,24 @@ import Modelo.CRUDFactura;
 import Modelo.CRUDLlamada;
 import Modelo.CRUDMenu;
 
+import java.io.Serializable;
 import java.util.Calendar;
-public class Menu {
+public class Menu implements Serializable {
+
+    CRUDMenu crudMenu;
+    CRUDCliente crudCliente;
+    CRUDLlamada crudLlamada;
+    CRUDFactura crudFactura;
+
+    public Menu(){
+        crudMenu = new CRUDMenu();
+        crudCliente = new CRUDCliente();
+        crudLlamada = new CRUDLlamada();
+        crudFactura = new CRUDFactura();
+    }
 
 
-    public static void main (String[] args){
-
-        CRUDMenu crudMenu = new CRUDMenu();
-        CRUDCliente crudCliente = new CRUDCliente();
-        CRUDLlamada crudLlamada = new CRUDLlamada();
-        CRUDFactura crudFactura = new CRUDFactura();
+    public void main(){
 
         boolean finalizar = false;
         int opcion;
@@ -34,7 +42,7 @@ public class Menu {
 
 
             boolean atras = false;
-            opcion = crudMenu.pideMenuGlobal();
+            opcion = this.crudMenu.pideMenuGlobal();
 
 
             switch(opcion){

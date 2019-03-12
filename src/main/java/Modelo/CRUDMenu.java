@@ -6,12 +6,13 @@ import Vista.IMenuCliente;
 import Vista.IMenuFactura;
 import Vista.IMenuLlamada;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura {
+public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura, Serializable {
 
     Scanner sn;
-    public CRUDMenu(){
+    public CRUDMenu() {
         sn = new Scanner(System.in);
     }
 

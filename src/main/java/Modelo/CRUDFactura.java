@@ -2,11 +2,13 @@ package Modelo;
 
 import Controlador.Factura;
 import Controlador.Tarifa;
+import Excepciones.FacturaNoExisteException;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class CRUDFactura {
+public class CRUDFactura implements Serializable {
 
     private Factura factura;
 
@@ -21,7 +23,7 @@ public class CRUDFactura {
         mapaFactuarsCod.put(codfac, factura);
     }
 
-    public Factura getFacturaCodigo(String codfac){
+    public Factura getFacturaCodigo(String codfac) throws FacturaNoExisteException {
         return mapaFactuarsCod.get(codfac);
     }
 

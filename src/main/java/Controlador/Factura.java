@@ -1,8 +1,9 @@
 package Controlador;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Factura {
+public class Factura implements Serializable {
 
     private String codfac;
     private Tarifa tarifa;
