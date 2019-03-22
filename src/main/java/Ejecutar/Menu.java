@@ -1,25 +1,35 @@
 package Ejecutar;
 
+import Controlador.Llamada;
 import Controlador.Tarifa;
+import Excepciones.ClienteNoExisteException;
+import Excepciones.ErrorEntreFechasException;
+import Excepciones.FacturaNoExisteException;
 import Modelo.CRUDCliente;
 import Modelo.CRUDFactura;
 import Modelo.CRUDLlamada;
-import Modelo.CRUDMenu;
+import Modelo.Genericidad.CRUDGenerico;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashMap;
+
 public class Menu implements Serializable {
 
     CRUDMenu crudMenu;
     CRUDCliente crudCliente;
     CRUDLlamada crudLlamada;
     CRUDFactura crudFactura;
+    CRUDGenerico crudGenerico;
 
     public Menu(){
         crudMenu = new CRUDMenu();
         crudCliente = new CRUDCliente();
         crudLlamada = new CRUDLlamada();
         crudFactura = new CRUDFactura();
+        crudGenerico = new CRUDGenerico();
     }
 
 
@@ -34,6 +44,7 @@ public class Menu implements Serializable {
         String direccion;
         String correo;
         Calendar fechaAlta;
+        Calendar fecha;
         Tarifa tarifa;
         String apellido;
         String clase;
@@ -68,24 +79,40 @@ public class Menu implements Serializable {
                                     crudCliente.altaClienteEmpresa(nombre, nif, direccion, correo, fechaAlta, tarifa);
                                 }
 
-                                System.out.println("Cliente creado" + crudCliente.getCliente(nif));
+                                try {
+                                    System.out.println("Cliente creado" + crudCliente.getCliente(nif));
+                                } catch (ClienteNoExisteException e) {
+                                    e.printStackTrace();
+                                }
 
                                 break;
                             case 2:
                                 System.out.println("Has seleccionado la opcion 2, borrar un cliente");
                                 nif = crudMenu.pideNIFCliente();
-                                crudCliente.borrarCliente(nif);
+                                try {
+                                    crudCliente.borrarCliente(nif);
+                                } catch (ClienteNoExisteException e) {
+                                    e.printStackTrace();
+                                }
                                 break;
                             case 3:
                                 System.out.println("Has seleccionado la opcion 3, cambiar la tarifa");
                                 tarifa = crudMenu.pideTarifaClietne();
                                 nif = crudMenu.pideNIFCliente();
-                                crudCliente.cambiaTarifa(nif, tarifa);
+                                try {
+                                    crudCliente.cambiaTarifa(nif, tarifa);
+                                } catch (ClienteNoExisteException e) {
+                                    e.printStackTrace();
+                                }
                                 break;
                             case 4:
                                 System.out.println("Has seleccionado la opcion 4, recuperar datos por NIF");
                                 nif = crudMenu.pideNIFCliente();
-                                crudCliente.getCliente(nif);
+                                try {
+                                    crudCliente.getCliente(nif);
+                                } catch (ClienteNoExisteException e) {
+                                    e.printStackTrace();
+                                }
                                 break;
                             case 5:
                                 System.out.println("Has seleccionado la opcion 5, listar todos los clientes");
@@ -119,11 +146,21 @@ public class Menu implements Serializable {
                                 crudLlamada.mustraLlamadaCliente(nif);
                                 break;
                             case 3:
+                                System.out.println("Has seleccionado la opcion 3, sacar llamada entre fechas");
+                                Calendar fecha1 = crudMenu.pideFecha();
+                                fecha = crudMenu.pideFecha();
+                                ArrayList<Llamada> todas = crudLlamada.getListaLlamadas();
+                                Collection<Llamada> lista = crudGenerico.extraerPeriodo(fecha1, fecha, todas);
+                                for (Llamada iter : lista) {
+                                    System.out.println(iter.toString());
+                                }
+                                break;
+                            case 4:
                                 System.out.println("Atras");
                                 atras = true;
                                 break;
                             default:
-                                System.out.println("Solo numeros entre 1 y 3");
+                                System.out.println("Solo numeros entre 1 y 4");
                         }
                     }
                     break;
@@ -141,7 +178,11 @@ public class Menu implements Serializable {
                             case 2:
                                 System.out.println("Has seleccionado la opcion 2, recuperar datos factura");
                                 codfac = crudMenu.pideCodigoFactura();
-                                crudFactura.getFacturaCodigo(codfac);
+                                try {
+                                    crudFactura.getFacturaCodigo(codfac);
+                                } catch (FacturaNoExisteException e) {
+                                    e.printStackTrace();
+                                }
                                 break;
                             case 3:
                                 System.out.println("Has seleccionado la opcion 3,recuperar todas las facturas de un cliente");

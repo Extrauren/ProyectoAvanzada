@@ -3,7 +3,7 @@ package Controlador;
 import java.io.Serializable;
 import java.util.Calendar;
 
-public class Cliente implements Serializable {
+public class Cliente implements Serializable, Fecha {
 
     private String nombre;
     private String NIF;
@@ -26,7 +26,7 @@ public class Cliente implements Serializable {
     }
 
 
-    public Calendar getFechaAlta() {
+    public Calendar getFecha() {
         return this.fechaAlta;
     }
 

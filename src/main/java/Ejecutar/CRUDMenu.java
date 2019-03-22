@@ -1,17 +1,21 @@
-package Modelo;
+package Ejecutar;
 
 import Controlador.Tarifa;
-import Vista.IMenu;
-import Vista.IMenuCliente;
-import Vista.IMenuFactura;
-import Vista.IMenuLlamada;
+import Vista.*;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
-public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura, Serializable {
+import static java.lang.Integer.parseInt;
+
+public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura, IMenuGenerico, Serializable {
 
     Scanner sn;
+
     public CRUDMenu() {
         sn = new Scanner(System.in);
     }
@@ -55,7 +59,8 @@ public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura
         System.out.println("¿Que opcion eliges?\n");
         System.out.println("1. Dar de alta una llamada");
         System.out.println("2. Listar las llamadas de un cliente");
-        System.out.println("3. Salir\n");
+        System.out.println("3. Llamada entre fechas");
+        System.out.println("4. Salir\n");
         System.out.println("Escribe una de las opciones: ");
         int opcion = sn.nextInt();
         sn.nextLine();
@@ -95,7 +100,7 @@ public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura
     @Override
     public String pideDireccionCleinte() {
         System.out.println("Introduce la direccion del cliente: ");
-        String direccion= sn.nextLine();
+        String direccion = sn.nextLine();
         return direccion;
     }
 
@@ -152,4 +157,13 @@ public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura
         return codfac;
     }
 
+    @Override
+    public Calendar pideFecha() {
+        System.out.println("Introduce una fecha: dd/mm/yy");
+        String fecha = sn.nextLine();
+        String[] parts = fecha.split("/");
+        Calendar fechaCal = null;
+        fechaCal.set(parseInt(parts[2]), parseInt(parts[1]), parseInt(parts[0]));
+        return fechaCal;
+    }
 }

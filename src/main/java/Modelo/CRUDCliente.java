@@ -14,17 +14,17 @@ public class CRUDCliente implements Serializable {
 
 
     HashMap<String, Cliente> mapaClientes = new HashMap<>();
-    private Cliente cliente;
+
 
 
     public void altaClienteParticular(String nombre, String NIF, String direccion, String correo, Calendar fechaAlta, Tarifa tarifa, String apellido){
-
+        Cliente cliente;
         cliente = new Particular(nombre, NIF, direccion, correo, fechaAlta, tarifa, apellido);
         mapaClientes.put(NIF, cliente);
 
     }
     public void altaClienteEmpresa(String nombre, String NIF, String direccion, String correo, Calendar fechaAlta, Tarifa tarifa){
-
+        Cliente cliente;
         cliente = new Empresa(nombre, NIF, direccion, correo, fechaAlta, tarifa);
         mapaClientes.put(NIF, cliente);
     }
@@ -34,6 +34,7 @@ public class CRUDCliente implements Serializable {
     }
 
     public void cambiaTarifa(String NIF, Tarifa tarifa) throws  ClienteNoExisteException{//Luego se cambia por la clase Tarifa
+        Cliente cliente;
         cliente = mapaClientes.get(NIF);
         cliente.setTarifa(tarifa);
         System.out.println(cliente.toString());

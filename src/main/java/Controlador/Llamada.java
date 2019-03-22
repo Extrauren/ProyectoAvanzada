@@ -3,7 +3,7 @@ package Controlador;
 import java.io.Serializable;
 import java.util.Calendar;
 
-public class Llamada implements Serializable {
+public class Llamada implements Serializable, Fecha {
     private int telefono;
     private Calendar fechaLlamada;
     private float duracion;
@@ -14,7 +14,7 @@ public class Llamada implements Serializable {
         this.telefono = telefono;
     }
 
-    public Calendar getFechaLlamada() {
+    public Calendar getFecha() {
         return fechaLlamada;
     }
 }

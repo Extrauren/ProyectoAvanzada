@@ -3,23 +3,27 @@ package Controlador;
 import java.io.Serializable;
 import java.util.Calendar;
 
-public class Factura implements Serializable {
+public class Factura implements Serializable, Fecha {
 
     private String codfac;
     private Tarifa tarifa;
-    private Calendar fechaFactura;
-    private Calendar periodoFac;
+    private Calendar fechaFin;
+    private Calendar fechaIni;
     private float importe;
 
-    public Factura(String codfac, Tarifa tarifa, Calendar fechaFactura, Calendar periodoFac, float importe){
+    public Factura(String codfac, Tarifa tarifa, Calendar fechaFin, float importe){
         this.codfac = codfac;
         this.tarifa = tarifa;
-        this.fechaFactura  = fechaFactura;
-        this.periodoFac = periodoFac;
+        this.fechaIni = Calendar.getInstance();
+        this.fechaFin = fechaFin;
         this.importe = importe;
     }
 
-    public Calendar getFechaFactura() {
-        return fechaFactura;
+    public Calendar getFecha() {
+        return fechaIni;
     }
+
+
+
+
 }

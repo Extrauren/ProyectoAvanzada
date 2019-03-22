@@ -10,16 +10,12 @@ import java.util.HashMap;
 
 public class CRUDFactura implements Serializable {
 
-    private Factura factura;
-
-    //HashMap<String, Factura> mapaFactuarsNIF = new HashMap<>();             //nif como clave
     HashMap<String, Factura> mapaFactuarsCod = new HashMap<>();             //codfac como clave
 
-
-    public void emitirFactura(String codfac, Tarifa tarifa, Calendar periodoFac){
-
+    public void emitirFactura(String codfac, Tarifa tarifa, Calendar fechaFin){
+        Factura factura;
         float importe = tarifa.valor;
-        factura = new Factura(codfac,tarifa,Calendar.getInstance(),periodoFac,importe);
+        factura = new Factura(codfac,tarifa,fechaFin,importe);
         mapaFactuarsCod.put(codfac, factura);
     }
 
@@ -30,9 +26,5 @@ public class CRUDFactura implements Serializable {
     public void listarFacturas(){
         System.out.println(mapaFactuarsCod.toString());
     }
-
-    /*public Factura getFacturaCliente(String NIF){
-        return mapaFactuarsNIF.get(NIF);
-    }*/
 
 }
