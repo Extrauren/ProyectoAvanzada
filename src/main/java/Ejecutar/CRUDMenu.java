@@ -4,10 +4,7 @@ import Controlador.Tarifa;
 import Vista.*;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
@@ -75,7 +72,8 @@ public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura
         System.out.println("1. Emitir factura");
         System.out.println("2. Recuperar datos factura");
         System.out.println("3. Recuperar todas las facturas de un cliente");
-        System.out.println("4. Atras\n");
+        System.out.println("4. Recuperar facturas entre fehcas");
+        System.out.println("5. Atras\n");
         System.out.println("Escribe una de las opciones: ");
         opcion = sn.nextInt();
         sn.nextLine();
@@ -162,7 +160,7 @@ public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura
         System.out.println("Introduce una fecha: dd/mm/yy");
         String fecha = sn.nextLine();
         String[] parts = fecha.split("/");
-        Calendar fechaCal = null;
+        Calendar fechaCal = Calendar.getInstance();
         fechaCal.set(parseInt(parts[2]), parseInt(parts[1]), parseInt(parts[0]));
         return fechaCal;
     }
