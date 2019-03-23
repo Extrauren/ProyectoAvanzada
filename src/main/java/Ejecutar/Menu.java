@@ -1,5 +1,6 @@
 package Ejecutar;
 
+import Controlador.Factura;
 import Controlador.Llamada;
 import Controlador.Tarifa;
 import Excepciones.ClienteNoExisteException;
@@ -150,9 +151,14 @@ public class Menu implements Serializable {
                                 Calendar fecha1 = crudMenu.pideFecha();
                                 fecha = crudMenu.pideFecha();
                                 ArrayList<Llamada> todas = crudLlamada.getListaLlamadas();
-                                Collection<Llamada> lista = crudGenerico.extraerPeriodo(fecha1, fecha, todas);
-                                for (Llamada iter : lista) {
-                                    System.out.println(iter.toString());
+                                Collection<Llamada> lista = null;
+                                try {
+                                    lista = crudGenerico.extraerPeriodo(fecha1, fecha, todas);
+                                    for (Llamada iter : lista) {
+                                        System.out.println(iter.toString());
+                                    }
+                                } catch (ErrorEntreFechasException e) {
+                                    e.printStackTrace();
                                 }
                                 break;
                             case 4:
@@ -189,11 +195,26 @@ public class Menu implements Serializable {
                                 crudFactura.listarFacturas();
                                 break;
                             case 4:
+                                System.out.println("Has seleccionado la opcion 4, recuperar factura entre fechas");
+                                Calendar fecha1 = crudMenu.pideFecha();
+                                Calendar fecha2 = crudMenu.pideFecha();
+                                ArrayList<Factura> todas = crudFactura.getListaFacturas();
+                                Collection<Factura> lista = null;
+                                try {
+                                    lista = crudGenerico.extraerPeriodo(fecha1, fecha2, todas);
+                                    for (Factura iter : lista) {
+                                        System.out.println(iter.toString());
+                                    }
+                                }catch (ErrorEntreFechasException e) {
+                                    e.printStackTrace();
+                                }
+                                break;
+                            case 5:
                                 System.out.println("Atras");
                                 atras = true;
                                 break;
                             default:
-                                System.out.println("Solo numeros entre 1 y 4");
+                                System.out.println("Solo numeros entre 1 y 5");
                         }
                     }
                     break;
