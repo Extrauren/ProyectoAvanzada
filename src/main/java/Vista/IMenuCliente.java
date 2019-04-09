@@ -1,6 +1,6 @@
 package Vista;
 
-import Controlador.Tarifa;
+import Controlador.Tarifas.Tarifa;
 
 public interface IMenuCliente {
 

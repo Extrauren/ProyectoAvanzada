@@ -2,20 +2,19 @@ package Ejecutar;
 
 import Controlador.Factura;
 import Controlador.Llamada;
-import Controlador.Tarifa;
+import Controlador.Tarifas.Tarifa;
 import Excepciones.ClienteNoExisteException;
 import Excepciones.ErrorEntreFechasException;
 import Excepciones.FacturaNoExisteException;
 import Modelo.CRUDCliente;
 import Modelo.CRUDFactura;
 import Modelo.CRUDLlamada;
+import Modelo.CRUDMenu;
 import Modelo.Genericidad.CRUDGenerico;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.HashMap;
 
 public class Menu implements Serializable {
 

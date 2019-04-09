@@ -1,7 +1,7 @@
 package Modelo;
 
 import Controlador.Factura;
-import Controlador.Tarifa;
+import Controlador.Tarifas.Tarifa;
 import Excepciones.FacturaNoExisteException;
 
 import java.io.Serializable;
@@ -16,7 +16,7 @@ public class CRUDFactura implements Serializable {
 
     public void emitirFactura(String codfac, Tarifa tarifa, Calendar fechaFin){
         Factura factura;
-        float importe = tarifa.valor;
+        float importe = tarifa.precio;
         factura = new Factura(codfac,tarifa,fechaFin,importe);
         mapaFactuarsCod.put(codfac, factura);
         listaFacturas.add(factura);

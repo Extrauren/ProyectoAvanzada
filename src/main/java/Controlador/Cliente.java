@@ -1,5 +1,7 @@
 package Controlador;
 
+import Controlador.Tarifas.Tarifa;
+
 import java.io.Serializable;
 import java.util.Calendar;
 

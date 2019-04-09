@@ -3,7 +3,7 @@ package Modelo;
 import Controlador.Cliente;
 import Controlador.Empresa;
 import Controlador.Particular;
-import Controlador.Tarifa;
+import Controlador.Tarifas.Tarifa;
 import Excepciones.ClienteNoExisteException;
 
 import java.io.Serializable;
@@ -33,7 +33,7 @@ public class CRUDCliente implements Serializable {
         mapaClientes.remove(NIF);
     }
 
-    public void cambiaTarifa(String NIF, Tarifa tarifa) throws  ClienteNoExisteException{//Luego se cambia por la clase Tarifa
+    public void cambiaTarifa(String NIF, Tarifa tarifa) throws  ClienteNoExisteException{   //Luego se cambia por la clase Tarifa
         Cliente cliente;
         cliente = mapaClientes.get(NIF);
         cliente.setTarifa(tarifa);

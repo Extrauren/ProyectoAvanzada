@@ -1,6 +1,6 @@
-package Ejecutar;
+package Modelo;
 
-import Controlador.Tarifa;
+import Controlador.Tarifas.Tarifa;
 import Vista.*;
 
 import java.io.Serializable;
@@ -112,7 +112,7 @@ public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura
     @Override
     public Tarifa pideTarifaClietne() {
         System.out.println("Introduce la tarifa del cliente: ");
-        int valor = sn.nextInt();
+        float valor = sn.nextFloat();
         Tarifa tarifa = new Tarifa(valor);
         sn.nextLine();
         return tarifa;
