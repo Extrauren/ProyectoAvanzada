@@ -5,8 +5,10 @@ import Controlador.Empresa;
 import Controlador.Particular;
 import Controlador.Tarifas.Tarifa;
 import Excepciones.ClienteNoExisteException;
+import Modelo.Factory.FabricaCliente;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -14,18 +16,17 @@ public class CRUDCliente implements Serializable {
 
 
     HashMap<String, Cliente> mapaClientes = new HashMap<>();
+    private FabricaCliente fabricaCliente;
 
 
-
-    public void altaClienteParticular(String nombre, String NIF, String direccion, String correo, Calendar fechaAlta, Tarifa tarifa, String apellido){
-        Cliente cliente;
-        cliente = new Particular(nombre, NIF, direccion, correo, fechaAlta, tarifa, apellido);
+    public void altaClienteParticular(String nombre, String NIF, String direccion, String correo, Calendar fechaAlta, ArrayList<Tarifa> tarifa, String apellido){
+        Cliente cliente = fabricaCliente.getClienteParticular(nombre, NIF, direccion, correo, fechaAlta, tarifa, apellido);
+        //cliente = new Particular(nombre, NIF, direccion, correo, fechaAlta, tarifa, apellido);
         mapaClientes.put(NIF, cliente);
-
     }
-    public void altaClienteEmpresa(String nombre, String NIF, String direccion, String correo, Calendar fechaAlta, Tarifa tarifa){
-        Cliente cliente;
-        cliente = new Empresa(nombre, NIF, direccion, correo, fechaAlta, tarifa);
+    public void altaClienteEmpresa(String nombre, String NIF, String direccion, String correo, Calendar fechaAlta, ArrayList<Tarifa> tarifa){
+        Cliente cliente = fabricaCliente.getClienteEmpresa(nombre, NIF, direccion,correo, fechaAlta, tarifa);
+        //cliente = new Empresa(nombre, NIF, direccion, correo, fechaAlta, tarifa);
         mapaClientes.put(NIF, cliente);
     }
 
@@ -33,7 +34,7 @@ public class CRUDCliente implements Serializable {
         mapaClientes.remove(NIF);
     }
 
-    public void cambiaTarifa(String NIF, Tarifa tarifa) throws  ClienteNoExisteException{   //Luego se cambia por la clase Tarifa
+    public void cambiaTarifa(String NIF, ArrayList<Tarifa> tarifa) throws  ClienteNoExisteException{   //Luego se cambia por la clase Tarifa
         Cliente cliente;
         cliente = mapaClientes.get(NIF);
         cliente.setTarifa(tarifa);

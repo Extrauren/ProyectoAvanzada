@@ -1,8 +1,10 @@
 package Controlador;
 
 import Controlador.Tarifas.Tarifa;
+import Vista.Fecha;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Cliente implements Serializable, Fecha {
@@ -12,9 +14,9 @@ public class Cliente implements Serializable, Fecha {
     private String direccion;
     private String correo;
     private Calendar fechaAlta;
-    private Tarifa tarifa;
+    private ArrayList<Tarifa> tarifa;
 
-    Cliente(String nombre, String NIF, String direccion, String correo, Calendar fechaAlta, Tarifa tarifa){
+    Cliente(String nombre, String NIF, String direccion, String correo, Calendar fechaAlta, ArrayList<Tarifa> tarifa){
         this.nombre=nombre;
         this.NIF=NIF;
         this.direccion=direccion;
@@ -32,11 +34,11 @@ public class Cliente implements Serializable, Fecha {
         return this.fechaAlta;
     }
 
-    public Tarifa getTarifa() {
+    public ArrayList<Tarifa> getTarifa() {
         return this.tarifa;
     }
 
-    public void setTarifa(Tarifa tarifa) {
+    public void setTarifa(ArrayList<Tarifa> tarifa) {
         this.tarifa = tarifa;
     }
 

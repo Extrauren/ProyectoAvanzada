@@ -1,6 +1,6 @@
 package Modelo.Genericidad;
 
-import Controlador.Fecha;
+import Vista.Fecha;
 import Excepciones.ErrorEntreFechasException;
 
 import java.util.ArrayList;

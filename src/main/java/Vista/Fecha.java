@@ -1,4 +1,4 @@
-package Controlador;
+package Vista;
 
 import java.util.Calendar;
 

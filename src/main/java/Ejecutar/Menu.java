@@ -67,24 +67,22 @@ public class Menu implements Serializable {
                                 nombre = crudMenu.pideNombreCliente();
                                 fechaAlta = Calendar.getInstance();
                                 nif= crudMenu.pideNIFCliente();
-                                tarifa = crudMenu.pideTarifaClietne();
+                                //tarifa = crudMenu.pideTarifaClietne();
+                                ArrayList<Tarifa> tarifas = new ArrayList<>();
                                 direccion = crudMenu.pideDireccionCleinte();
                                 correo = crudMenu.pideCorreoCliente();
                                 clase = crudMenu.pideTipoCliente();
                                 if (clase.equals("particular")){
                                     apellido=crudMenu.pideApellido();
-                                    crudCliente.altaClienteParticular(nombre, nif, direccion, correo, fechaAlta, tarifa, apellido);
-
+                                    crudCliente.altaClienteParticular(nombre, nif, direccion, correo, fechaAlta, tarifas, apellido);
                                 }else{
-                                    crudCliente.altaClienteEmpresa(nombre, nif, direccion, correo, fechaAlta, tarifa);
+                                    crudCliente.altaClienteEmpresa(nombre, nif, direccion, correo, fechaAlta, tarifas);
                                 }
-
                                 try {
                                     System.out.println("Cliente creado" + crudCliente.getCliente(nif));
                                 } catch (ClienteNoExisteException e) {
                                     e.printStackTrace();
                                 }
-
                                 break;
                             case 2:
                                 System.out.println("Has seleccionado la opcion 2, borrar un cliente");
