@@ -3,6 +3,9 @@ package Ejecutar;
 import Controlador.Factura;
 import Controlador.Llamada;
 import Controlador.Tarifas.Tarifa;
+import Controlador.Tarifas.TarifaBasica;
+import Controlador.Tarifas.TarifaDias;
+import Controlador.Tarifas.TarifaHoras;
 import Excepciones.ClienteNoExisteException;
 import Excepciones.ErrorEntreFechasException;
 import Excepciones.FacturaNoExisteException;
@@ -10,6 +13,7 @@ import Modelo.CRUDCliente;
 import Modelo.CRUDFactura;
 import Modelo.CRUDLlamada;
 import Modelo.CRUDMenu;
+import Modelo.Factory.FabricaTarifa;
 import Modelo.Genericidad.CRUDGenerico;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,6 +27,7 @@ public class Menu implements Serializable {
     CRUDLlamada crudLlamada;
     CRUDFactura crudFactura;
     CRUDGenerico crudGenerico;
+    FabricaTarifa fabricaTarifa;
 
     public Menu(){
         crudMenu = new CRUDMenu();
@@ -36,19 +41,11 @@ public class Menu implements Serializable {
     public void main(){
 
         boolean finalizar = false;
-        int opcion;
-        int tel;
+        int opcion, tel, horaIni, horaFin;
         float duracion;
-        String nombre;
-        String nif;
-        String direccion;
-        String correo;
-        Calendar fechaAlta;
-        Calendar fecha;
+        String nombre, nif, direccion, correo, apellido, clase, codfac;
+        Calendar fechaAlta, fecha;
         Tarifa tarifa;
-        String apellido;
-        String clase;
-        String codfac;
         while(!finalizar){
 
 
@@ -57,7 +54,6 @@ public class Menu implements Serializable {
 
 
             switch(opcion){
-
                 case 1:
                     while(!atras) {
                         opcion = crudMenu.pideMenuCliente();
@@ -67,8 +63,9 @@ public class Menu implements Serializable {
                                 nombre = crudMenu.pideNombreCliente();
                                 fechaAlta = Calendar.getInstance();
                                 nif= crudMenu.pideNIFCliente();
-                                //tarifa = crudMenu.pideTarifaClietne();
                                 ArrayList<Tarifa> tarifas = new ArrayList<>();
+                                TarifaBasica basica = (TarifaBasica) fabricaTarifa.getTarifaBasica(0.15f);
+                                tarifas.add(basica);
                                 direccion = crudMenu.pideDireccionCleinte();
                                 correo = crudMenu.pideCorreoCliente();
                                 clase = crudMenu.pideTipoCliente();
@@ -78,8 +75,24 @@ public class Menu implements Serializable {
                                 }else{
                                     crudCliente.altaClienteEmpresa(nombre, nif, direccion, correo, fechaAlta, tarifas);
                                 }
+                                int tipo=crudMenu.pideTipoTarifa();
+                                while(tipo < 3) {
+                                    if (tipo == 1) {
+                                        horaIni = crudMenu.pideHora();
+                                        horaFin = crudMenu.pideHora();
+                                        TarifaHoras horas = (TarifaHoras) fabricaTarifa.getTarifaHoras(basica, 0.05f, horaIni, horaFin);
+                                        tarifas.add(horas);
+                                        tipo = crudMenu.pideTipoTarifa();
+                                    }
+                                    if (tipo == 2) {
+                                        int dia = crudMenu.pideDiaSemana();
+                                        TarifaDias dias = (TarifaDias) fabricaTarifa.getTarifaDias(basica, 0.05f, dia);
+                                        tarifas.add(dias);
+                                        crudMenu.pideTipoTarifa();
+                                    }
+                                }
                                 try {
-                                    System.out.println("Cliente creado" + crudCliente.getCliente(nif));
+                                    System.out.println("Cliente creado" + crudCliente.getCliente(nif).toString());
                                 } catch (ClienteNoExisteException e) {
                                     e.printStackTrace();
                                 }

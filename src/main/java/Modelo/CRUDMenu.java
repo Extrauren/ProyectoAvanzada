@@ -133,6 +133,30 @@ public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura
     }
 
     @Override
+    public int pideTipoTarifa() {
+        System.out.println("Que tipo de tarifa deseas contratar: [1]Horas(0.05), [2]Dia(0), [3]Salir");
+        int opcion = sn.nextInt();
+        sn.nextLine();
+        return opcion;
+    }
+
+    @Override
+    public int pideHora() {
+        System.out.println("Introduce una hora: ");
+        int hora = sn.nextInt();
+        sn.nextLine();
+        return hora;
+    }
+
+    @Override
+    public int pideDiaSemana() {
+        System.out.println("Introduce el dia de la semana: ");
+        int dia = sn.nextInt();
+        sn.nextLine();
+        return dia;
+    }
+
+    @Override
     public int pideTelefono() {
         System.out.println("Introduce el telefono: ");
         int telefono = sn.nextInt();

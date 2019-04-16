@@ -11,5 +11,8 @@ public interface IMenuCliente {
     Tarifa pideTarifaClietne();
     String pideTipoCliente();
     String pideApellido();
+    int pideTipoTarifa();
+    int pideHora();
+    int pideDiaSemana();
 
 }
