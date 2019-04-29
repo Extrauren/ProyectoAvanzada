@@ -13,6 +13,7 @@ import Modelo.CRUDCliente;
 import Modelo.CRUDFactura;
 import Modelo.CRUDLlamada;
 import Modelo.CRUDMenu;
+import Modelo.Factory.FabricaCliente;
 import Modelo.Factory.FabricaTarifa;
 import Modelo.Genericidad.CRUDGenerico;
 import java.io.Serializable;
@@ -28,6 +29,7 @@ public class Menu implements Serializable {
     CRUDFactura crudFactura;
     CRUDGenerico crudGenerico;
     FabricaTarifa fabricaTarifa;
+    FabricaCliente fabricaCliente;
 
     public Menu(){
         crudMenu = new CRUDMenu();
@@ -35,13 +37,15 @@ public class Menu implements Serializable {
         crudLlamada = new CRUDLlamada();
         crudFactura = new CRUDFactura();
         crudGenerico = new CRUDGenerico();
+        fabricaTarifa = new FabricaTarifa();
+        fabricaCliente = new FabricaCliente();
     }
 
 
     public void main(){
 
         boolean finalizar = false;
-        int opcion, tel, horaIni, horaFin;
+        int opcion, tel, horaIni, horaFin, tipo;
         float duracion;
         String nombre, nif, direccion, correo, apellido, clase, codfac;
         Calendar fechaAlta, fecha;
@@ -69,13 +73,7 @@ public class Menu implements Serializable {
                                 direccion = crudMenu.pideDireccionCleinte();
                                 correo = crudMenu.pideCorreoCliente();
                                 clase = crudMenu.pideTipoCliente();
-                                if (clase.equals("particular")){
-                                    apellido=crudMenu.pideApellido();
-                                    crudCliente.altaClienteParticular(nombre, nif, direccion, correo, fechaAlta, tarifas, apellido);
-                                }else{
-                                    crudCliente.altaClienteEmpresa(nombre, nif, direccion, correo, fechaAlta, tarifas);
-                                }
-                                int tipo=crudMenu.pideTipoTarifa();
+                                tipo=crudMenu.pideTipoTarifa();
                                 while(tipo < 3) {
                                     if (tipo == 1) {
                                         horaIni = crudMenu.pideHora();
@@ -88,9 +86,16 @@ public class Menu implements Serializable {
                                         int dia = crudMenu.pideDiaSemana();
                                         TarifaDias dias = (TarifaDias) fabricaTarifa.getTarifaDias(basica, 0.05f, dia);
                                         tarifas.add(dias);
-                                        crudMenu.pideTipoTarifa();
+                                        tipo=crudMenu.pideTipoTarifa();
                                     }
                                 }
+                                if (clase.equals("particular")){
+                                    apellido=crudMenu.pideApellido();
+                                    crudCliente.añadeClietne(fabricaCliente.getClienteParticular(nombre, nif, direccion, correo, fechaAlta, tarifas, apellido));
+                                }else{
+                                    crudCliente.añadeClietne(fabricaCliente.getClienteEmpresa(nombre, nif, direccion, correo, fechaAlta, tarifas));
+                                }
+
                                 try {
                                     System.out.println("Cliente creado" + crudCliente.getCliente(nif).toString());
                                 } catch (ClienteNoExisteException e) {
@@ -108,10 +113,28 @@ public class Menu implements Serializable {
                                 break;
                             case 3:
                                 System.out.println("Has seleccionado la opcion 3, cambiar la tarifa");
-                                tarifa = crudMenu.pideTarifaClietne();
-                                nif = crudMenu.pideNIFCliente();
+                                ArrayList<Tarifa> tarifas2 = new ArrayList<>();
+                                TarifaBasica basica2 = (TarifaBasica) fabricaTarifa.getTarifaBasica(0.15f);
+                                tarifas2.add(basica2);
+                                tipo=crudMenu.pideTipoTarifa();
+                                while(tipo < 3) {
+                                    if (tipo == 1) {
+                                        horaIni = crudMenu.pideHora();
+                                        horaFin = crudMenu.pideHora();
+                                        TarifaHoras horas2 = (TarifaHoras) fabricaTarifa.getTarifaHoras(basica2, 0.05f, horaIni, horaFin);
+                                        tarifas2.add(horas2);
+                                        tipo = crudMenu.pideTipoTarifa();
+                                    }
+                                    if (tipo == 2) {
+                                        int dia = crudMenu.pideDiaSemana();
+                                        TarifaDias dias = (TarifaDias) fabricaTarifa.getTarifaDias(basica2, 0.05f, dia);
+                                        tarifas2.add(dias);
+                                        crudMenu.pideTipoTarifa();
+                                    }
+                                }
+                                String dni=crudMenu.pideNIFCliente();
                                 try {
-                                    crudCliente.cambiaTarifa(nif, tarifa);
+                                    crudCliente.cambiaTarifa(dni, tarifas2);
                                 } catch (ClienteNoExisteException e) {
                                     e.printStackTrace();
                                 }
@@ -154,7 +177,7 @@ public class Menu implements Serializable {
                             case 2:
                                 System.out.println("Has seleccionado la opcion 2, listar las llamadas de un cliente");
                                 nif = crudMenu.pideNIFCliente();
-                                crudLlamada.mustraLlamadaCliente(nif);
+                                System.out.println(crudLlamada.muestraLlamadaCliente(nif));
                                 break;
                             case 3:
                                 System.out.println("Has seleccionado la opcion 3, sacar llamada entre fechas");
@@ -187,9 +210,12 @@ public class Menu implements Serializable {
                         switch (opcion) {
                             case 1:
                                 System.out.println("Has seleccionado la opcion 1, emitir una factura");
-                                codfac = crudMenu.pideCodigoFactura();
-                                tarifa = crudMenu.pideTarifaClietne();
-                                crudFactura.emitirFactura(codfac, tarifa, Calendar.getInstance());
+                                String NIF = crudMenu.pideNIFCliente();
+                                try {
+                                    crudFactura.emitirFactura(NIF);
+                                } catch (ClienteNoExisteException e) {
+                                    e.printStackTrace();
+                                }
                                 break;
                             case 2:
                                 System.out.println("Has seleccionado la opcion 2, recuperar datos factura");

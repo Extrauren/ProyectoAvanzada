@@ -30,6 +30,11 @@ public class CRUDCliente implements Serializable {
         mapaClientes.put(NIF, cliente);
     }
 
+    public void añadeClietne(Cliente cliente){
+        String nif = cliente.getNIF();
+        mapaClientes.put(nif, cliente);
+    }
+
     public void borrarCliente(String NIF) throws ClienteNoExisteException{
         mapaClientes.remove(NIF);
     }

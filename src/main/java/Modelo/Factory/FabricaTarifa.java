@@ -14,7 +14,7 @@ public class FabricaTarifa implements IFabricaTarifas {
 
     @Override
     public Tarifa getTarifaBasica(float precio) {
-        return new TarifaBasica();
+        return new TarifaBasica(precio);
     }
 
     @Override

@@ -28,4 +28,8 @@ public class TarifaDias extends Tarifa {
         return costeActual;
     }
 
+    public int getDia(){
+        return this.dia;
+    }
+
 }

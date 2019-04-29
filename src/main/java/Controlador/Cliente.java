@@ -38,6 +38,10 @@ public class Cliente implements Serializable, Fecha {
         return this.tarifa;
     }
 
+    public String getNIF(){
+        return this.NIF;
+    }
+
     public void setTarifa(ArrayList<Tarifa> tarifa) {
         this.tarifa = tarifa;
     }

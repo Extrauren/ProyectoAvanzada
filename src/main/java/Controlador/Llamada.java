@@ -19,4 +19,8 @@ public class Llamada implements Serializable, Fecha {
     public Calendar getFecha() {
         return fechaLlamada;
     }
+
+    public float getDuracion(){
+        return this.duracion;
+    }
 }

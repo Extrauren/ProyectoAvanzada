@@ -29,4 +29,12 @@ public class TarifaHoras extends Tarifa {
         }
         return costeActual;
     }
+
+    public int getHoraFin() {
+        return horaFin;
+    }
+
+    public int getHoraIni() {
+        return horaIni;
+    }
 }
