@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.CRUD;
 
 import Controlador.Factura;
 import Controlador.Llamada;
@@ -6,8 +6,8 @@ import Controlador.Tarifas.Tarifa;
 import Controlador.Tarifas.TarifaBasica;
 import Controlador.Tarifas.TarifaDias;
 import Controlador.Tarifas.TarifaHoras;
-import Excepciones.ClienteNoExisteException;
-import Excepciones.FacturaNoExisteException;
+import Modelo.Excepciones.ClienteNoExisteException;
+import Modelo.Excepciones.FacturaNoExisteException;
 import Modelo.Factory.FabricaTarifa;
 
 import java.io.Serializable;

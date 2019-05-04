@@ -1,4 +1,4 @@
-package Ejecutar;
+package Modelo.Ejecutar;
 
 import java.io.IOException;
 import java.io.Serializable;

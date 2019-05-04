@@ -1,7 +1,7 @@
 package Controlador;
 
 import Controlador.Tarifas.Tarifa;
-import Vista.Fecha;
+import Modelo.Interfaces.Fecha;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,6 +29,9 @@ public class Cliente implements Serializable, Fecha {
 
     }
 
+    public String getNombre(){
+        return this.nombre;
+    }
 
     public Calendar getFecha() {
         return this.fechaAlta;

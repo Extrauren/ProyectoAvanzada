@@ -1,4 +1,4 @@
-package Ejecutar;
+package Modelo.Ejecutar;
 
 import Controlador.Factura;
 import Controlador.Llamada;
@@ -6,13 +6,13 @@ import Controlador.Tarifas.Tarifa;
 import Controlador.Tarifas.TarifaBasica;
 import Controlador.Tarifas.TarifaDias;
 import Controlador.Tarifas.TarifaHoras;
-import Excepciones.ClienteNoExisteException;
-import Excepciones.ErrorEntreFechasException;
-import Excepciones.FacturaNoExisteException;
-import Modelo.CRUDCliente;
-import Modelo.CRUDFactura;
-import Modelo.CRUDLlamada;
-import Modelo.CRUDMenu;
+import Modelo.Excepciones.ClienteNoExisteException;
+import Modelo.Excepciones.ErrorEntreFechasException;
+import Modelo.Excepciones.FacturaNoExisteException;
+import Modelo.CRUD.CRUDCliente;
+import Modelo.CRUD.CRUDFactura;
+import Modelo.CRUD.CRUDLlamada;
+import Modelo.CRUD.CRUDMenu;
 import Modelo.Factory.FabricaCliente;
 import Modelo.Factory.FabricaTarifa;
 import Modelo.Genericidad.CRUDGenerico;
@@ -91,9 +91,9 @@ public class Menu implements Serializable {
                                 }
                                 if (clase.equals("particular")){
                                     apellido=crudMenu.pideApellido();
-                                    crudCliente.añadeClietne(fabricaCliente.getClienteParticular(nombre, nif, direccion, correo, fechaAlta, tarifas, apellido));
+                                    crudCliente.anyadeClietne(fabricaCliente.getClienteParticular(nombre, nif, direccion, correo, fechaAlta, tarifas, apellido));
                                 }else{
-                                    crudCliente.añadeClietne(fabricaCliente.getClienteEmpresa(nombre, nif, direccion, correo, fechaAlta, tarifas));
+                                    crudCliente.anyadeClietne(fabricaCliente.getClienteEmpresa(nombre, nif, direccion, correo, fechaAlta, tarifas));
                                 }
 
                                 try {
@@ -150,7 +150,7 @@ public class Menu implements Serializable {
                                 break;
                             case 5:
                                 System.out.println("Has seleccionado la opcion 5, listar todos los clientes");
-                                crudCliente.listarClientes();
+                                crudCliente.mostrarClientes();
                                 break;
                             case 6:
                                 System.out.println("Atras");

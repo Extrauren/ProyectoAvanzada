@@ -4,7 +4,7 @@ import Controlador.Cliente;
 import Controlador.Empresa;
 import Controlador.Particular;
 import Controlador.Tarifas.Tarifa;
-import Vista.IFabricaClientes;
+import Modelo.Interfaces.IFabricaClientes;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package Excepciones;
+package Modelo.Excepciones;
 
 public class ErrorEntreFechasException extends Exception {
 

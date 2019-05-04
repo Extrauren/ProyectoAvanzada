@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.CRUD;
 
 import Controlador.Llamada;
 import java.io.Serializable;

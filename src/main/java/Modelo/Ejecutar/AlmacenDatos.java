@@ -1,8 +1,8 @@
-package Ejecutar;
+package Modelo.Ejecutar;
 
-import Modelo.CRUDCliente;
-import Modelo.CRUDFactura;
-import Modelo.CRUDLlamada;
+import Modelo.CRUD.CRUDCliente;
+import Modelo.CRUD.CRUDFactura;
+import Modelo.CRUD.CRUDLlamada;
 
 public class AlmacenDatos {
     private CRUDLlamada crudLlamada;

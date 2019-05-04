@@ -1,7 +1,7 @@
-package Modelo;
+package Modelo.CRUD;
 
 import Controlador.Tarifas.Tarifa;
-import Vista.*;
+import Modelo.Interfaces.*;
 
 import java.io.Serializable;
 import java.util.Calendar;

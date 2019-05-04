@@ -1,7 +1,7 @@
 package Controlador;
 
 import Controlador.Tarifas.Tarifa;
-import Vista.Fecha;
+import Modelo.Interfaces.Fecha;
 
 import java.io.Serializable;
 import java.util.Calendar;

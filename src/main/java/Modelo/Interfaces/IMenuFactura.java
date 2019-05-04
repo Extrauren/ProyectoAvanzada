@@ -1,4 +1,4 @@
-package Vista;
+package Modelo.Interfaces;
 
 public interface IMenuFactura {
 

@@ -4,7 +4,7 @@ import Controlador.Tarifas.Tarifa;
 import Controlador.Tarifas.TarifaBasica;
 import Controlador.Tarifas.TarifaDias;
 import Controlador.Tarifas.TarifaHoras;
-import Vista.IFabricaTarifas;
+import Modelo.Interfaces.IFabricaTarifas;
 
 public class FabricaTarifa implements IFabricaTarifas {
 

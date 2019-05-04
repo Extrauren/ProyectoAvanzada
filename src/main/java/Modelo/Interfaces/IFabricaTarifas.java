@@ -1,4 +1,4 @@
-package Vista;
+package Modelo.Interfaces;
 
 import Controlador.Tarifas.Tarifa;
 
