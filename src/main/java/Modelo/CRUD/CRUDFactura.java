@@ -18,14 +18,14 @@ public class CRUDFactura implements Serializable {
 
     HashMap<String, Factura> mapaFactuarsCod = new HashMap<>();             //codfac como clave
     ArrayList<Factura> listaFacturas = new ArrayList<>();
-    CRUDCliente crudCliente = new CRUDCliente();
+    ModeloCliente modeloCliente = new ModeloCliente();
     CRUDLlamada crudLlamada = new CRUDLlamada();
 
 
 
     public void emitirFactura(String nif) throws ClienteNoExisteException {
         FabricaTarifa fabricaTarifa = new FabricaTarifa();
-        ArrayList<Tarifa> tarifas = crudCliente.getCliente(nif).getTarifa();
+        ArrayList<Tarifa> tarifas = modeloCliente.getCliente(nif).getTarifa();
         ArrayList<Llamada> llamadas = crudLlamada.muestraLlamadaCliente(nif);
         boolean tieneHoras = false;
         boolean tieneDias = false;

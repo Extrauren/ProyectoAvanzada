@@ -1,24 +1,27 @@
 package Vista;
 
-import Modelo.CRUD.CRUDCliente;
+import Modelo.CRUD.ModeloCliente;
 import Modelo.CRUD.CRUDFactura;
 import Modelo.CRUD.CRUDLlamada;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.Serializable;
 
 public class VentanaPrincipal implements Serializable {
 
-    private CRUDCliente crudCliente;
+    private ModeloCliente modeloCliente;
     private CRUDFactura crudFactura;
     private CRUDLlamada crudLlamada;
-
+    private VistaClientes vistaClientes;
     public VentanaPrincipal(){
 
-        this.crudCliente = new CRUDCliente();
+        this.modeloCliente = new ModeloCliente();
         this.crudFactura = new CRUDFactura();
         this.crudLlamada = new CRUDLlamada();
+        this.vistaClientes = new VistaClientes();
 
     }
 
@@ -27,7 +30,6 @@ public class VentanaPrincipal implements Serializable {
         JFrame ventana = new JFrame("Telefonia");
         JPanel panelBotones = new JPanel();
         JPanel panelTexto = new JPanel();
-
         //Creamos el titulo y le ponemos una fuente y un tamaño nuevo
         JLabel titulo = new JLabel("Telefonia");
         titulo.setFont(new Font("Serif", Font.PLAIN, 30));
@@ -37,13 +39,17 @@ public class VentanaPrincipal implements Serializable {
         JButton facturas = new JButton("Facturas");
         JButton llamadas = new JButton("Llamadas");
 
+        clientes.setBackground(Color.cyan);
+        facturas.setBackground(Color.yellow);
+        llamadas.setBackground(Color.green);
+
         //Añadimos al contenedor de texto el titulo
         panelTexto.add(titulo);
 
         //Añadimos al contenedor de los botones los botones
-        panelBotones.add(clientes,BorderLayout.WEST);
-        panelBotones.add(facturas,BorderLayout.CENTER);
-        panelBotones.add(llamadas,BorderLayout.EAST);
+        panelBotones.add(clientes);
+        panelBotones.add(facturas);
+        panelBotones.add(llamadas);
         // Añadimos los paneles a la ventana */
         ventana.add(panelBotones);
         ventana.add(panelTexto , BorderLayout.NORTH);
@@ -55,6 +61,12 @@ public class VentanaPrincipal implements Serializable {
         ventana.setVisible(true);
 
 
+        clientes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vistaClientes.ejecutarVentanaClientes();
+            }
+        });
     }
 
 }

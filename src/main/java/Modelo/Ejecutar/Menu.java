@@ -9,7 +9,7 @@ import Controlador.Tarifas.TarifaHoras;
 import Modelo.Excepciones.ClienteNoExisteException;
 import Modelo.Excepciones.ErrorEntreFechasException;
 import Modelo.Excepciones.FacturaNoExisteException;
-import Modelo.CRUD.CRUDCliente;
+import Modelo.CRUD.ModeloCliente;
 import Modelo.CRUD.CRUDFactura;
 import Modelo.CRUD.CRUDLlamada;
 import Modelo.CRUD.CRUDMenu;
@@ -24,7 +24,7 @@ import java.util.Collection;
 public class Menu implements Serializable {
 
     CRUDMenu crudMenu;
-    CRUDCliente crudCliente;
+    ModeloCliente modeloCliente;
     CRUDLlamada crudLlamada;
     CRUDFactura crudFactura;
     CRUDGenerico crudGenerico;
@@ -33,7 +33,7 @@ public class Menu implements Serializable {
 
     public Menu(){
         crudMenu = new CRUDMenu();
-        crudCliente = new CRUDCliente();
+        modeloCliente = new ModeloCliente();
         crudLlamada = new CRUDLlamada();
         crudFactura = new CRUDFactura();
         crudGenerico = new CRUDGenerico();
@@ -91,13 +91,13 @@ public class Menu implements Serializable {
                                 }
                                 if (clase.equals("particular")){
                                     apellido=crudMenu.pideApellido();
-                                    crudCliente.anyadeClietne(fabricaCliente.getClienteParticular(nombre, nif, direccion, correo, fechaAlta, tarifas, apellido));
+                                    modeloCliente.anyadeClietne(fabricaCliente.getClienteParticular(nombre, nif, direccion, correo, fechaAlta, tarifas, apellido));
                                 }else{
-                                    crudCliente.anyadeClietne(fabricaCliente.getClienteEmpresa(nombre, nif, direccion, correo, fechaAlta, tarifas));
+                                    modeloCliente.anyadeClietne(fabricaCliente.getClienteEmpresa(nombre, nif, direccion, correo, fechaAlta, tarifas));
                                 }
 
                                 try {
-                                    System.out.println("Cliente creado" + crudCliente.getCliente(nif).toString());
+                                    System.out.println("Cliente creado" + modeloCliente.getCliente(nif).toString());
                                 } catch (ClienteNoExisteException e) {
                                     e.printStackTrace();
                                 }
@@ -106,7 +106,7 @@ public class Menu implements Serializable {
                                 System.out.println("Has seleccionado la opcion 2, borrar un cliente");
                                 nif = crudMenu.pideNIFCliente();
                                 try {
-                                    crudCliente.borrarCliente(nif);
+                                    modeloCliente.borrarCliente(nif);
                                 } catch (ClienteNoExisteException e) {
                                     e.printStackTrace();
                                 }
@@ -134,7 +134,7 @@ public class Menu implements Serializable {
                                 }
                                 String dni=crudMenu.pideNIFCliente();
                                 try {
-                                    crudCliente.cambiaTarifa(dni, tarifas2);
+                                    modeloCliente.cambiaTarifa(dni, tarifas2);
                                 } catch (ClienteNoExisteException e) {
                                     e.printStackTrace();
                                 }
@@ -143,14 +143,14 @@ public class Menu implements Serializable {
                                 System.out.println("Has seleccionado la opcion 4, recuperar datos por NIF");
                                 nif = crudMenu.pideNIFCliente();
                                 try {
-                                    crudCliente.getCliente(nif);
+                                    modeloCliente.getCliente(nif);
                                 } catch (ClienteNoExisteException e) {
                                     e.printStackTrace();
                                 }
                                 break;
                             case 5:
                                 System.out.println("Has seleccionado la opcion 5, listar todos los clientes");
-                                crudCliente.mostrarClientes();
+                                modeloCliente.mostrarClientes();
                                 break;
                             case 6:
                                 System.out.println("Atras");
