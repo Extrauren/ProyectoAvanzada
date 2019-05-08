@@ -1,4 +1,4 @@
-package Modelo.CRUD;
+package Modelo;
 
 import Controlador.Llamada;
 import java.io.Serializable;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class CRUDLlamada implements Serializable {
+public class ModeloLlamada implements Serializable {
 
 
     HashMap<String, ArrayList<Llamada>> mapaLlamadas = new HashMap<>();            // NIF clave y llamada valor (posible añadir otro mapa)

@@ -1,18 +1,18 @@
 package Modelo.Ejecutar;
 
-import Modelo.CRUD.ModeloCliente;
-import Modelo.CRUD.CRUDFactura;
-import Modelo.CRUD.CRUDLlamada;
+import Modelo.ModeloCliente;
+import Modelo.ModeloFactura;
+import Modelo.ModeloLlamada;
 
 public class AlmacenDatos {
-    private CRUDLlamada crudLlamada;
-    private CRUDFactura crudFactura;
+    private ModeloLlamada modeloLlamada;
+    private ModeloFactura modeloFactura;
     private ModeloCliente modeloCliente;
 
-    AlmacenDatos(ModeloCliente modeloCliente, CRUDLlamada crudLlamada, CRUDFactura crudFactura){
+    AlmacenDatos(ModeloCliente modeloCliente, ModeloLlamada modeloLlamada, ModeloFactura modeloFactura){
         this.modeloCliente = modeloCliente;
-        this.crudLlamada = crudLlamada;
-        this.crudFactura = crudFactura;
+        this.modeloLlamada = modeloLlamada;
+        this.modeloFactura = modeloFactura;
     }
 
 

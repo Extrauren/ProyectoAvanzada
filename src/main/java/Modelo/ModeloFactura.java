@@ -1,4 +1,4 @@
-package Modelo.CRUD;
+package Modelo;
 
 import Controlador.Factura;
 import Controlador.Llamada;
@@ -14,19 +14,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CRUDFactura implements Serializable {
+public class ModeloFactura implements Serializable {
 
     HashMap<String, Factura> mapaFactuarsCod = new HashMap<>();             //codfac como clave
     ArrayList<Factura> listaFacturas = new ArrayList<>();
     ModeloCliente modeloCliente = new ModeloCliente();
-    CRUDLlamada crudLlamada = new CRUDLlamada();
+    ModeloLlamada modeloLlamada = new ModeloLlamada();
 
 
 
     public void emitirFactura(String nif) throws ClienteNoExisteException {
         FabricaTarifa fabricaTarifa = new FabricaTarifa();
         ArrayList<Tarifa> tarifas = modeloCliente.getCliente(nif).getTarifa();
-        ArrayList<Llamada> llamadas = crudLlamada.muestraLlamadaCliente(nif);
+        ArrayList<Llamada> llamadas = modeloLlamada.muestraLlamadaCliente(nif);
         boolean tieneHoras = false;
         boolean tieneDias = false;
         TarifaDias tarifaDias = null;

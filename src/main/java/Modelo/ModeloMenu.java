@@ -1,4 +1,4 @@
-package Modelo.CRUD;
+package Modelo;
 
 import Controlador.Tarifas.Tarifa;
 import Modelo.Interfaces.*;
@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
-public class CRUDMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura, IMenuGenerico, Serializable {
+public class ModeloMenu implements IMenu, IMenuCliente, IMenuLlamada, IMenuFactura, IMenuGenerico, Serializable {
 
     Scanner sn;
 
-    public CRUDMenu() {
+    public ModeloMenu() {
         sn = new Scanner(System.in);
     }
 

@@ -1,4 +1,4 @@
-package Modelo.Genericidad;
+package Modelo;
 
 import Modelo.Interfaces.Fecha;
 import Modelo.Excepciones.ErrorEntreFechasException;
@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.Scanner;
 
 
-public class CRUDGenerico {
+public class ModeloGenerico {
 
     public  <T extends Fecha> Collection<T> extraerPeriodo(Calendar fechaIni, Calendar fechaFin, Collection<T> conjunto) throws ErrorEntreFechasException {
 

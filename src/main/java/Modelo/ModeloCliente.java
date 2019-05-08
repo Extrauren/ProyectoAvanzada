@@ -1,4 +1,4 @@
-package Modelo.CRUD;
+package Modelo;
 
 import Controlador.Cliente;
 import Controlador.Empresa;
@@ -8,7 +8,7 @@ import Modelo.Excepciones.ClienteNoExisteException;
 import Modelo.Excepciones.ErrorEntreFechasException;
 import Modelo.Factory.FabricaCliente;
 import Modelo.Factory.FabricaTarifa;
-import Modelo.Genericidad.CRUDGenerico;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,9 +22,28 @@ public class ModeloCliente implements Serializable {
     ArrayList<Cliente> listaClietnes = new ArrayList<>();
     private FabricaCliente fabricaCliente;
     private FabricaTarifa fabricaTarifa;
-    private CRUDGenerico crudGenerico;
+    private ModeloGenerico modeloGenerico;
 
+    public  void mostrarClientes(){
+        System.out.println(mapaClientes.toString());
+    }
 
+    public  HashMap<String, Cliente> getMapaClientes(){
+        return this.mapaClientes;
+    }
+
+    public ArrayList<Cliente> getListaClientes(){
+        return this.listaClietnes;
+    }
+
+    public int getNumClientes(){
+        return mapaClientes.size();
+    }
+
+    public Cliente getCliente(String NIF) throws ClienteNoExisteException {
+        return mapaClientes.get(NIF);
+
+    }
     public void anyadeClietne(Cliente cliente){
         String nif = cliente.getNIF();
         mapaClientes.put(nif, cliente);
@@ -48,10 +67,7 @@ public class ModeloCliente implements Serializable {
 
     }
 
-    public Cliente getCliente(String NIF) throws ClienteNoExisteException {
-        return mapaClientes.get(NIF);
 
-    }
 
     public Cliente[] listarClientes(){
         Cliente[] listado = new Cliente[this.getNumClientes()];
@@ -111,9 +127,9 @@ public class ModeloCliente implements Serializable {
 
         Cliente[] listado = new Cliente[this.getNumClientes()];
         try {
-            crudGenerico.compruebaFecha(fechaIni, fechaFin);
+            modeloGenerico.compruebaFecha(fechaIni, fechaFin);
             ArrayList<Cliente> todas = this.getListaClientes();
-            Collection<Cliente> lista = crudGenerico.extraerPeriodo(fechaIni, fechaFin, todas);
+            Collection<Cliente> lista = modeloGenerico.extraerPeriodo(fechaIni, fechaFin, todas);
             int i = 0;
             for (Cliente iter : lista) {
                 listado[i] = iter;
@@ -162,21 +178,4 @@ public class ModeloCliente implements Serializable {
         System.out.println(this.getCliente(DNI).getTarifa().size());
         return listado;
     }
-
-    public  void mostrarClientes(){
-        System.out.println(mapaClientes.toString());
-    }
-
-    public  HashMap<String, Cliente> getMapaClientes(){
-        return this.mapaClientes;
-    }
-
-    public ArrayList<Cliente> getListaClientes(){
-        return this.listaClietnes;
-    }
-
-    public int getNumClientes(){
-        return mapaClientes.size();
-    }
-
 }
