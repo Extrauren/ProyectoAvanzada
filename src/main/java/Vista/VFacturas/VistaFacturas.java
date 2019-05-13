@@ -25,7 +25,7 @@ public class VistaFacturas extends JDialog {
         JButton cancelar = new JButton("Atras");
         cancelar.setBackground(Color.yellow);
 
-        this.setLayout(new GridLayout(2,3));
+        this.setLayout(new GridLayout(2,3, 6 ,6));
         this.setTitle("Facturas");
         this.setVisible(true);
 

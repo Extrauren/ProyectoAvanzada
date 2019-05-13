@@ -12,8 +12,10 @@ public class VistaClientes extends JDialog implements Serializable {
 
 
     private VistaInsertarCliente vistaInsertarCliente;
+    private VistaEliminarCliente vistaEliminarCliente;
     public VistaClientes() {
         this.vistaInsertarCliente = new VistaInsertarCliente();
+        this.vistaEliminarCliente = new VistaEliminarCliente();
     }
 
 
@@ -35,7 +37,7 @@ public class VistaClientes extends JDialog implements Serializable {
         JButton cancelar = new JButton("Atras");
         cancelar.setBackground(Color.cyan);
 
-        this.setLayout(new GridLayout(3,3));
+        this.setLayout(new GridLayout(3,3, 6, 6));
         this.setTitle("Clientes");
         this.setVisible(true);
 
@@ -56,7 +58,14 @@ public class VistaClientes extends JDialog implements Serializable {
         insertar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaInsertarCliente.ejecutaVistaModeloCliente();
+                vistaInsertarCliente.ejecutaInsertarCliente();
+            }
+        });
+
+        eliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                vistaEliminarCliente.ejecutaEliminarCliente();
             }
         });
     }

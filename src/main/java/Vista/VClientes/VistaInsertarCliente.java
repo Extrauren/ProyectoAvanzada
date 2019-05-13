@@ -13,19 +13,43 @@ public class VistaInsertarCliente extends JDialog {
         this.modeloCliente = new ModeloCliente();
     }
 
-    public void ejecutaVistaModeloCliente(){
+    public void ejecutaInsertarCliente(){
         this.setTitle("Anyadir Cliente");
         this.setVisible(true);
         this.setModal(true);
         this.setSize(500,300);
-        this.setLayout(new GridLayout(5,2));
+        this.setLayout(new GridLayout(5,2, 0, 6));
+
         //Elementos graficos
 
-        JLabel nombre = new JLabel("Introduce el nombre:");
+        JLabel nombre = new JLabel("Nombre: ");
         this.add(nombre);
 
         JTextArea introducirNombre = new JTextArea();
         this.add(introducirNombre);
+
+        JLabel nif = new JLabel("NIF: ");
+        this.add(nif);
+
+        JTextArea introducirNIF = new JTextArea();
+        this.add(introducirNIF);
+
+        JLabel dir = new JLabel("Direccion : ");
+        this.add(dir);
+
+        JTextArea introducirDir = new JTextArea();
+        this.add(introducirDir);
+
+        JLabel correo = new JLabel("Correo Electronico : ");
+        this.add(correo);
+
+        JTextArea introducirCorreo = new JTextArea();
+        this.add(introducirCorreo);
+
+        JButton aceptar = new JButton("Aceptar");
+        aceptar.setBackground(Color.cyan);
+        this.add(aceptar);
+
     }
 
 }
