@@ -22,25 +22,25 @@ public class VistaInsertarCliente extends JDialog {
 
         //Elementos graficos
 
-        JLabel nombre = new JLabel("Nombre: ");
+        JLabel nombre = new JLabel("Nombre: ", SwingConstants.CENTER);
         this.add(nombre);
 
         JTextArea introducirNombre = new JTextArea();
         this.add(introducirNombre);
 
-        JLabel nif = new JLabel("NIF: ");
+        JLabel nif = new JLabel("NIF: ", SwingConstants.CENTER);
         this.add(nif);
 
         JTextArea introducirNIF = new JTextArea();
         this.add(introducirNIF);
 
-        JLabel dir = new JLabel("Direccion : ");
+        JLabel dir = new JLabel("Direccion : ", SwingConstants.CENTER);
         this.add(dir);
 
         JTextArea introducirDir = new JTextArea();
         this.add(introducirDir);
 
-        JLabel correo = new JLabel("Correo Electronico : ");
+        JLabel correo = new JLabel("Correo Electronico : ", SwingConstants.CENTER);
         this.add(correo);
 
         JTextArea introducirCorreo = new JTextArea();

@@ -13,9 +13,16 @@ public class VistaClientes extends JDialog implements Serializable {
 
     private VistaInsertarCliente vistaInsertarCliente;
     private VistaEliminarCliente vistaEliminarCliente;
+    private VistaListarClientes vistaListarClientes;
+    private VistaMostrarCliente vistaMostrarCliente;
+    private VistaCambiarTarifa vistaCambiarTarifa;
+
     public VistaClientes() {
         this.vistaInsertarCliente = new VistaInsertarCliente();
         this.vistaEliminarCliente = new VistaEliminarCliente();
+        this.vistaListarClientes = new VistaListarClientes();
+        this.vistaMostrarCliente = new VistaMostrarCliente();
+        this.vistaCambiarTarifa = new VistaCambiarTarifa();
     }
 
 
@@ -32,12 +39,10 @@ public class VistaClientes extends JDialog implements Serializable {
         listaruno.setBackground(Color.lightGray);
         JButton cambiarTarifa = new JButton("Cambiar Tarifa Cliente");
         cambiarTarifa.setBackground(Color.lightGray);
-        JButton CEntreFechas = new JButton("Cliente Entre Fechas");
-        CEntreFechas.setBackground(Color.lightGray);
         JButton cancelar = new JButton("Atras");
         cancelar.setBackground(Color.cyan);
 
-        this.setLayout(new GridLayout(3,3, 6, 6));
+        this.setLayout(new GridLayout(2,3, 6, 6));
         this.setTitle("Clientes");
         this.setVisible(true);
 
@@ -46,8 +51,6 @@ public class VistaClientes extends JDialog implements Serializable {
         this.add(listar);
         this.add(listaruno);
         this.add(cambiarTarifa);
-        this.add(CEntreFechas);
-        this.add(nada);
         this.add(cancelar);
 
         this.setModal(true);
@@ -66,6 +69,27 @@ public class VistaClientes extends JDialog implements Serializable {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 vistaEliminarCliente.ejecutaEliminarCliente();
+            }
+        });
+
+        listar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                vistaListarClientes.ejecutaListarClientes();
+            }
+        });
+
+        listaruno.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                vistaMostrarCliente.ejecutaMostrarCLiente();
+            }
+        });
+
+        cambiarTarifa.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                vistaCambiarTarifa.ejecutaCambiarTarifa();
             }
         });
     }

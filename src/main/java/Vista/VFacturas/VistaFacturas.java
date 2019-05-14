@@ -4,13 +4,21 @@ import Modelo.ModeloFactura;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class VistaFacturas extends JDialog {
 
     private ModeloFactura modeloFactura;
+    private VistaEmitirFactura vistaEmitirFactura;
+    private VListarFacturas vListarFacturas;
+    private VRecuperarFactura vRecuperarFactura;
 
     public VistaFacturas(){
         this.modeloFactura = new ModeloFactura();
+        this.vistaEmitirFactura = new VistaEmitirFactura();
+        this.vListarFacturas = new VListarFacturas();
+        this.vRecuperarFactura = new VRecuperarFactura();
     }
 
     public void ejecutarVentanaFacturas() {
@@ -38,6 +46,28 @@ public class VistaFacturas extends JDialog {
         this.setModal(true);
         this.setSize(500,300);
 
+        //Actions listeners
+
+        emitir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                vistaEmitirFactura.ejecutarEmitirFactura();
+            }
+        });
+
+        listar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                vListarFacturas.ejecutaListarFacturas();
+            }
+        });
+
+        mostrarFactura.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                vRecuperarFactura.ejecutarRecuperarFactura();
+            }
+        });
     }
 
 }
