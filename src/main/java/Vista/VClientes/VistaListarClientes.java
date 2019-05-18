@@ -1,9 +1,13 @@
 package Vista.VClientes;
 
+import Controlador.Cliente;
 import Modelo.ModeloCliente;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class VistaListarClientes extends JDialog {
 
@@ -18,16 +22,32 @@ public class VistaListarClientes extends JDialog {
         this.setVisible(true);
         this.setModal(true);
         this.setSize(500,300);
-        this.setLayout(new GridLayout(2,1, 0, 6));
+        this.setLayout(new GridLayout(3,1, 0, 6));
 
         //Elementos gráficos
 
         JLabel intro = new JLabel("Listado de todos los clientes de la base de datos: ", SwingConstants.CENTER);
         this.add(intro);
 
-        JLabel clientes = new JLabel();
+        JOptionPane clientes = new JOptionPane();
         this.add(clientes);
 
+
+        JButton mostrar = new JButton("Mostrar");
+        mostrar.setBackground(Color.cyan);
+        this.add(mostrar);
+
+        //zona action listeners
+
+        mostrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ArrayList<Cliente> listaClietnes = modeloCliente.getListaClientes();
+                JOptionPane.showMessageDialog(clientes, listaClietnes);
+
+            }
+        });
     }
+
 
 }

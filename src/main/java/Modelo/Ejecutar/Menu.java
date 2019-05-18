@@ -172,7 +172,7 @@ public class Menu implements Serializable {
                                 tel = modeloMenu.pideTelefono();
                                 fechaAlta = Calendar.getInstance();
                                 duracion = modeloMenu.pideDuracion();
-                                modeloLlamada.altaLLamada(nif, tel, fechaAlta, duracion);
+                                modeloLlamada.altaLLamada(nif, tel, duracion);
                                 break;
                             case 2:
                                 System.out.println("Has seleccionado la opcion 2, listar las llamadas de un cliente");

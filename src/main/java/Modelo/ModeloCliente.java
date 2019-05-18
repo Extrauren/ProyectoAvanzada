@@ -48,6 +48,8 @@ public class ModeloCliente implements Serializable {
         String nif = cliente.getNIF();
         mapaClientes.put(nif, cliente);
         listaClietnes.add(cliente);
+        listarClientes();
+
     }
 
     public void borrarCliente(String NIF) throws ClienteNoExisteException{
@@ -69,14 +71,12 @@ public class ModeloCliente implements Serializable {
 
 
 
-    public Cliente[] listarClientes(){
-        Cliente[] listado = new Cliente[this.getNumClientes()];
-        for (int i = 0; i < this.getNumClientes(); i++) {
-            listado[i] = this.getListaClientes().get(i);
+    public String listarClientes() {
+        for (Cliente c : listaClietnes) {
+            System.out.println( c.toString());
         }
-        return listado;
+        return null;
     }
-
     public void insertarDatosClienteVista(String nombre, String nif, String correo, String direccion, boolean tipo, float tarifaBase, String apellido) {
 
         ArrayList<Tarifa> listaTarifas = new ArrayList<>();

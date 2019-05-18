@@ -1,9 +1,12 @@
 package Vista.VClientes;
 
+import Modelo.Excepciones.ClienteNoExisteException;
 import Modelo.ModeloCliente;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class VistaMostrarCliente extends JDialog {
 
@@ -31,6 +34,19 @@ public class VistaMostrarCliente extends JDialog {
         JButton aceptar = new JButton("Aceptar");
         this.add(aceptar);
         aceptar.setBackground(Color.cyan);
+
+        //zona action listeners
+
+        aceptar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    modeloCliente.getCliente(intro.getText());
+                } catch (ClienteNoExisteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 }

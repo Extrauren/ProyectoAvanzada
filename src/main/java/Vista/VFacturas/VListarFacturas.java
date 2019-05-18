@@ -4,6 +4,8 @@ import Modelo.ModeloFactura;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class VListarFacturas extends JDialog {
 
@@ -22,15 +24,18 @@ public class VListarFacturas extends JDialog {
 
         //elementos graficos
 
-        JLabel info = new JLabel("Introduce el nif del cliente del que quieras recuperar sus facuturas: ", SwingConstants.CENTER);
-        this.add(info);
-
-        JTextArea tecto = new JTextArea();
-        this.add(tecto);
-
         JButton aceptar = new JButton("Aceptar");
         aceptar.setBackground(Color.yellow);
         this.add(aceptar);
+
+        //zona action listener
+
+        aceptar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                modeloFactura.listarFacturas();
+            }
+        });
 
 
 

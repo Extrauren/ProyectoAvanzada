@@ -16,6 +16,12 @@ public class Llamada implements Serializable, Fecha {
         this.telefono = telefono;
     }
 
+    public Llamada(int telefono, float duracion) {
+        this.telefono = telefono;
+        this.fechaLlamada = Calendar.getInstance();
+        this.duracion = duracion;
+    }
+
     public Calendar getFecha() {
         return fechaLlamada;
     }

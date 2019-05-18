@@ -4,13 +4,19 @@ import Modelo.ModeloLlamada;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class VistaLlamadas extends JDialog {
 
     private ModeloLlamada modeloLlamada;
+    private VistaAltaLlamada vistaAltaLlamada;
+    private VistaListaLlamadas vistaListaLlamadas;
 
     public VistaLlamadas(){
         this.modeloLlamada = new ModeloLlamada();
+        this.vistaAltaLlamada = new VistaAltaLlamada();
+        this.vistaListaLlamadas = new VistaListaLlamadas();
     }
 
     public void ejecutarVentanaLlamadas() {
@@ -32,6 +38,22 @@ public class VistaLlamadas extends JDialog {
 
         this.setModal(true);
         this.setSize(500,300);
+
+        //Zona action listeners
+
+        alta.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                vistaAltaLlamada.ejecutaAltaLlamada();
+            }
+        });
+
+        listar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                vistaListaLlamadas.ejecutarListarLlamadas();
+            }
+        });
 
     }
 
