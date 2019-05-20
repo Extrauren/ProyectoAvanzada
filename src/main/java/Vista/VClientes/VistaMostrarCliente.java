@@ -1,5 +1,6 @@
 package Vista.VClientes;
 
+import Controlador.Cliente;
 import Modelo.Excepciones.ClienteNoExisteException;
 import Modelo.ModeloCliente;
 
@@ -21,14 +22,17 @@ public class VistaMostrarCliente extends JDialog {
         this.setVisible(true);
         this.setModal(true);
         this.setSize(500,300);
-        this.setLayout(new GridLayout(3,1, 0, 6));
+        this.setLayout(new GridLayout(4,1, 0, 6));
 
         //Elementos Graficos
 
         JLabel intro = new JLabel("Introduce el NIF de un cliente para mostrar sus datos: ", SwingConstants.CENTER);
         this.add(intro);
 
-        JLabel cliente = new JLabel();
+        JTextField nif = new JTextField();
+        this.add(nif);
+
+        JList cliente = new JList();
         this.add(cliente);
 
         JButton aceptar = new JButton("Aceptar");
@@ -40,11 +44,7 @@ public class VistaMostrarCliente extends JDialog {
         aceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                try {
-                    modeloCliente.getCliente(intro.getText());
-                } catch (ClienteNoExisteException e) {
-                    e.printStackTrace();
-                }
+                cliente.setListData(modeloCliente.recuperarClientePorDNI(nif.getText()));
             }
         });
 

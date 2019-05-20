@@ -29,7 +29,7 @@ public class VistaListarClientes extends JDialog {
         JLabel intro = new JLabel("Listado de todos los clientes de la base de datos: ", SwingConstants.CENTER);
         this.add(intro);
 
-        JOptionPane clientes = new JOptionPane();
+        JLabel clientes = new JLabel();
         this.add(clientes);
 
 
@@ -42,9 +42,7 @@ public class VistaListarClientes extends JDialog {
         mostrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ArrayList<Cliente> listaClietnes = modeloCliente.getListaClientes();
-                JOptionPane.showMessageDialog(clientes, listaClietnes);
-
+                modeloCliente.listarClientes();
             }
         });
     }

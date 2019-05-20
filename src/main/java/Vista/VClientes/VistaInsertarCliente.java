@@ -45,19 +45,19 @@ public class VistaInsertarCliente extends JDialog {
         JLabel nif = new JLabel("NIF: ", SwingConstants.CENTER);
         this.add(nif);
 
-        JTextArea introducirNIF = new JTextArea();
+        JTextField introducirNIF = new JTextField();
         this.add(introducirNIF);
 
         JLabel dir = new JLabel("Direccion : ", SwingConstants.CENTER);
         this.add(dir);
 
-        JTextArea introducirDir = new JTextArea();
+        JTextField introducirDir = new JTextField();
         this.add(introducirDir);
 
         JLabel correo = new JLabel("Correo Electronico : ", SwingConstants.CENTER);
         this.add(correo);
 
-        JTextArea introducirCorreo = new JTextArea();
+        JTextField introducirCorreo = new JTextField();
         this.add(introducirCorreo);
 
 
@@ -89,6 +89,7 @@ public class VistaInsertarCliente extends JDialog {
                 }else{
                     cliente = fabricaCliente.getClienteEmpresa(introducirNombre.getText(), introducirNIF.getText(), introducirDir.getText(), introducirCorreo.getText(), Calendar.getInstance(), tarifas);
                     modeloCliente.anyadeClietne(cliente);
+                    modeloCliente.listarClientes();
                 }
 
 

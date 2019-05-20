@@ -5,14 +5,10 @@ import Controlador.Empresa;
 import Controlador.Particular;
 import Controlador.Tarifas.Tarifa;
 import Modelo.Excepciones.ClienteNoExisteException;
-import Modelo.Excepciones.ErrorEntreFechasException;
-import Modelo.Factory.FabricaCliente;
-import Modelo.Factory.FabricaTarifa;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
 import java.util.HashMap;
 
 public class ModeloCliente implements Serializable {
@@ -20,9 +16,6 @@ public class ModeloCliente implements Serializable {
 
     HashMap<String, Cliente> mapaClientes = new HashMap<>();
     ArrayList<Cliente> listaClietnes = new ArrayList<>();
-    private FabricaCliente fabricaCliente;
-    private FabricaTarifa fabricaTarifa;
-    private ModeloGenerico modeloGenerico;
 
     public  void mostrarClientes(){
         System.out.println(mapaClientes.toString());
@@ -48,10 +41,18 @@ public class ModeloCliente implements Serializable {
         String nif = cliente.getNIF();
         mapaClientes.put(nif, cliente);
         listaClietnes.add(cliente);
-        listarClientes();
+        System.out.println("añadido");
 
     }
-
+    public Cliente[] recuperarClientePorDNI(String nif) {
+        Cliente unCliente[] = new Cliente[1];
+        try {
+            unCliente[0] = this.getCliente(nif);
+        } catch (ClienteNoExisteException e) {
+            e.printStackTrace();
+        }
+        return unCliente;
+    }
     public void borrarCliente(String NIF) throws ClienteNoExisteException{
         mapaClientes.remove(NIF);
         for(int i =0; i<getNumClientes(); i++){
@@ -69,113 +70,19 @@ public class ModeloCliente implements Serializable {
 
     }
 
-
-
-    public String listarClientes() {
+    public void listarClientes() {
         for (Cliente c : listaClietnes) {
-            System.out.println( c.toString());
-        }
-        return null;
-    }
-    public void insertarDatosClienteVista(String nombre, String nif, String correo, String direccion, boolean tipo, float tarifaBase, String apellido) {
-
-        ArrayList<Tarifa> listaTarifas = new ArrayList<>();
-        FabricaTarifa fabricaTarifas = new FabricaTarifa();
-
-        Tarifa tarifaBasica = fabricaTarifas.getTarifaBasica(tarifaBase);
-
-        Calendar fechaAlta = Calendar.getInstance();
-        listaTarifas.add(tarifaBasica);
-
-        FabricaCliente fabricaClientes = new FabricaCliente();
-        if (tipo) {
-            Particular particular = (Particular) fabricaClientes.getClienteParticular( nombre,  nif,  direccion,  correo,  fechaAlta,  listaTarifas,  apellido);
-            this.anyadeClietne(particular);
-        } else {
-            Empresa empresa = (Empresa) fabricaClientes.getClienteEmpresa(nombre, nif, correo, direccion, fechaAlta, listaTarifas);
-            this.anyadeClietne(empresa);
-
+            System.out.println("Cliente: " + c.toString());
         }
 
     }
 
-    public boolean eliminarClienteDNI(String nif) {
-        Cliente cs;
-        try {
-            cs = this.getCliente(nif);
-            if (this.getListaClientes().contains(cs)) {
-                this.borrarCliente(cs.getNIF());
-                return true;
-            }
-            return false;
-        } catch (ClienteNoExisteException e) {
-            e.printStackTrace();
+    public String listadoClientes(){
+        String salida = "";
+        for(Cliente c : this.listaClietnes){
+            salida = salida + c.toString();
         }
-        return false;
+        return salida;
     }
 
-    public String recuperarClientePorDNI(String nif) {
-        try{
-            return this.getCliente(nif).getNombre();
-        }catch (ClienteNoExisteException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public Cliente[] listarFacturas(Calendar fechaIni, Calendar fechaFin){
-
-        Cliente[] listado = new Cliente[this.getNumClientes()];
-        try {
-            modeloGenerico.compruebaFecha(fechaIni, fechaFin);
-            ArrayList<Cliente> todas = this.getListaClientes();
-            Collection<Cliente> lista = modeloGenerico.extraerPeriodo(fechaIni, fechaFin, todas);
-            int i = 0;
-            for (Cliente iter : lista) {
-                listado[i] = iter;
-                i++;
-            }
-        }catch (ErrorEntreFechasException e){
-            System.out.println("Error");
-        }
-        return listado;
-    }
-
-    public void insertarTarifaBasica(String nif, float precio) throws ClienteNoExisteException {
-        Tarifa nueva = fabricaTarifa.getTarifaBasica(precio);
-        this.getCliente(nif).getTarifa().add(nueva);
-    }
-
-    public void insertarTarifaDia(String DNI, int dia, float precio) throws  ClienteNoExisteException{
-        Tarifa tarifaPadre = null;
-        for(Tarifa iter :  this.getCliente(DNI).getTarifa()){
-            if(iter.equals(this.getCliente(DNI).getTarifa().size()-1)){
-                tarifaPadre = iter;
-            }
-        }
-        Tarifa nueva = fabricaTarifa.getTarifaDias(tarifaPadre, precio ,dia);
-        this.getCliente(DNI).getTarifa().add(nueva);
-    }
-    public void insertarTarifaHoras(String DNI, int fechaIni, int fechaFin, float precio) throws ClienteNoExisteException{
-        Tarifa tarifaPadre = null;
-        for(Tarifa iter :  this.getCliente(DNI).getTarifa()){
-            if(iter.equals(this.getCliente(DNI).getTarifa().size()-1)){
-                tarifaPadre = iter;
-            }
-        }
-        Tarifa nueva = fabricaTarifa.getTarifaHoras(tarifaPadre,precio,fechaIni, fechaFin);
-        this.getCliente(DNI).getTarifa().add(nueva);
-    }
-    public void borrarTarifas(String DNI) throws ClienteNoExisteException {
-        this.getCliente(DNI).getTarifa().clear();
-    }
-
-    public Tarifa[] listaTarifaCliente(String DNI) throws ClienteNoExisteException {
-        Tarifa[] listado = new Tarifa[this.getCliente(DNI).getTarifa().size()];
-        for(int i = 0; i < this.getCliente(DNI).getTarifa().size(); i++){
-            listado[i] = this.getCliente(DNI).getTarifa().get(i);
-        }
-        System.out.println(this.getCliente(DNI).getTarifa().size());
-        return listado;
-    }
 }
