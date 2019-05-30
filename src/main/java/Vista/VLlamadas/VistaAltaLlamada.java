@@ -9,13 +9,10 @@ import java.awt.event.ActionListener;
 
 public class VistaAltaLlamada extends JDialog {
 
-    private ModeloLlamada modeloLlamada;
-
     public VistaAltaLlamada(){
-        this.modeloLlamada = new ModeloLlamada();
     }
 
-    public void ejecutaAltaLlamada(){
+    public void ejecutaAltaLlamada(ModeloLlamada  modeloLlamada){
         this.setTitle("Dar de alta una llamada");
         this.setVisible(true);
         this.setModal(true);

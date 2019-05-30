@@ -9,13 +9,11 @@ import java.awt.event.ActionListener;
 
 public class VistaListaLlamadas extends JDialog {
 
-    private ModeloLlamada modeloLlamada;
-
     public VistaListaLlamadas(){
-        this.modeloLlamada = new ModeloLlamada();
+
     }
 
-    public void ejecutarListarLlamadas() {
+    public void ejecutarListarLlamadas(ModeloLlamada modeloLlamada) {
         this.setTitle("Listar Llamadas");
         this.setVisible(true);
         this.setModal(true);

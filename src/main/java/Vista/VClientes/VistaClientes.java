@@ -26,7 +26,7 @@ public class VistaClientes extends JDialog implements Serializable {
     }
 
 
-    public void ejecutarVentanaClientes() {
+    public void ejecutarVentanaClientes(ModeloCliente modeloCliente) {
 
         JLabel nada = new JLabel();
         JButton insertar = new JButton("Insertar Cliente");
@@ -61,35 +61,35 @@ public class VistaClientes extends JDialog implements Serializable {
         insertar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaInsertarCliente.ejecutaInsertarCliente();
+                vistaInsertarCliente.ejecutaInsertarCliente(modeloCliente);
             }
         });
 
         eliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaEliminarCliente.ejecutaEliminarCliente();
+                vistaEliminarCliente.ejecutaEliminarCliente(modeloCliente);
             }
         });
 
         listar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaListarClientes.ejecutaListarClientes();
+                vistaListarClientes.ejecutaListarClientes(modeloCliente);
             }
         });
 
         listaruno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaMostrarCliente.ejecutaMostrarCLiente();
+                vistaMostrarCliente.ejecutaMostrarCLiente(modeloCliente);
             }
         });
 
         cambiarTarifa.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaCambiarTarifa.ejecutaCambiarTarifa();
+                vistaCambiarTarifa.ejecutaCambiarTarifa(modeloCliente);
             }
         });
     }

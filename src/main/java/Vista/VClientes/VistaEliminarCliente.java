@@ -10,13 +10,11 @@ import java.awt.event.ActionListener;
 
 public class VistaEliminarCliente extends JDialog {
 
-    private ModeloCliente modeloCliente;
 
     VistaEliminarCliente(){
-        this.modeloCliente = new ModeloCliente();
     }
 
-    public void ejecutaEliminarCliente(){
+    public void ejecutaEliminarCliente(ModeloCliente modeloCliente){
 
         this.setTitle("Eliminar Cliente");
         this.setVisible(true);

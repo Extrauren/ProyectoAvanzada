@@ -9,19 +9,17 @@ import java.awt.event.ActionListener;
 
 public class VistaFacturas extends JDialog {
 
-    private ModeloFactura modeloFactura;
     private VistaEmitirFactura vistaEmitirFactura;
     private VListarFacturas vListarFacturas;
     private VRecuperarFactura vRecuperarFactura;
 
     public VistaFacturas(){
-        this.modeloFactura = new ModeloFactura();
         this.vistaEmitirFactura = new VistaEmitirFactura();
         this.vListarFacturas = new VListarFacturas();
         this.vRecuperarFactura = new VRecuperarFactura();
     }
 
-    public void ejecutarVentanaFacturas() {
+    public void ejecutarVentanaFacturas(ModeloFactura modeloFactura) {
 
         JLabel nada = new JLabel();
         JButton emitir = new JButton("Emitir Una Factura");
@@ -51,21 +49,21 @@ public class VistaFacturas extends JDialog {
         emitir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaEmitirFactura.ejecutarEmitirFactura();
+                vistaEmitirFactura.ejecutarEmitirFactura(modeloFactura);
             }
         });
 
         listar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vListarFacturas.ejecutaListarFacturas();
+                vListarFacturas.ejecutaListarFacturas(modeloFactura);
             }
         });
 
         mostrarFactura.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vRecuperarFactura.ejecutarRecuperarFactura();
+                vRecuperarFactura.ejecutarRecuperarFactura(modeloFactura);
             }
         });
     }

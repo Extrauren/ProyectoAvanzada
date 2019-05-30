@@ -9,13 +9,12 @@ import java.awt.event.ActionListener;
 
 public class VListarFacturas extends JDialog {
 
-    private ModeloFactura modeloFactura;
+
 
     public VListarFacturas(){
-        this.modeloFactura = new ModeloFactura();
     }
 
-    public void ejecutaListarFacturas(){
+    public void ejecutaListarFacturas(ModeloFactura modeloFactura){
         this.setTitle("Listar Facturas");
         this.setVisible(true);
         this.setModal(true);

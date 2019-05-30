@@ -1,23 +1,19 @@
 package Vista.VClientes;
 
-import Controlador.Cliente;
 import Modelo.ModeloCliente;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class VistaListarClientes extends JDialog {
 
-    private ModeloCliente modeloCliente;
 
     public VistaListarClientes(){
-        this.modeloCliente = new ModeloCliente();
     }
 
-    public void ejecutaListarClientes(){
+    public void ejecutaListarClientes(ModeloCliente modeloCliente){
         this.setTitle("Listar Cliente");
         this.setVisible(true);
         this.setModal(true);

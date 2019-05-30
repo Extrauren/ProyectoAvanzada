@@ -16,17 +16,15 @@ import java.util.Calendar;
 
 public class VistaInsertarCliente extends JDialog {
 
-    private ModeloCliente modeloCliente;
     private FabricaCliente fabricaCliente;
     private FabricaTarifa fabricaTarifa;
 
     VistaInsertarCliente(){
-        this.modeloCliente = new ModeloCliente();
         this.fabricaCliente = new FabricaCliente();
         this.fabricaTarifa = new FabricaTarifa();
     }
 
-    public void ejecutaInsertarCliente(){
+    public void ejecutaInsertarCliente(ModeloCliente modeloCliente){
 
         this.setTitle("Anyadir Cliente");
         this.setVisible(true);

@@ -7,13 +7,11 @@ import java.awt.*;
 
 public class VistaCambiarTarifa extends JDialog {
 
-    private ModeloCliente modeloCliente;
 
     public VistaCambiarTarifa() {
-        this.modeloCliente = new ModeloCliente();
     }
 
-    public void ejecutaCambiarTarifa() {
+    public void ejecutaCambiarTarifa(ModeloCliente modeloCliente) {
         this.setTitle("Cambiar Tarifa");
         this.setVisible(true);
         this.setModal(true);

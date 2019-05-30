@@ -1,5 +1,6 @@
 package Vista;
 
+import Modelo.Ejecutar.GuardarDatos;
 import Modelo.ModeloCliente;
 import Modelo.ModeloFactura;
 import Modelo.ModeloLlamada;
@@ -11,9 +12,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.io.Serializable;
 
-public class VentanaPrincipal extends  JDialog implements Serializable {
+public class VentanaPrincipal implements Serializable {
 
     private ModeloCliente modeloCliente;
     private ModeloFactura modeloFactura;
@@ -21,6 +25,7 @@ public class VentanaPrincipal extends  JDialog implements Serializable {
     private VistaClientes vistaClientes;
     private VistaFacturas vistaFacturas;
     private VistaLlamadas vistaLlamadas;
+
     public VentanaPrincipal(){
 
         this.modeloCliente = new ModeloCliente();
@@ -29,6 +34,14 @@ public class VentanaPrincipal extends  JDialog implements Serializable {
         this.vistaClientes = new VistaClientes();
         this.vistaFacturas = new VistaFacturas();
         this.vistaLlamadas = new VistaLlamadas();
+    }
+
+    public void cosa(){
+        try {
+            GuardarDatos.escritura(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void ensenyaVentanaPrincipal(){
@@ -77,24 +90,33 @@ public class VentanaPrincipal extends  JDialog implements Serializable {
 
         //Zona de los ActionListeners
 
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing (WindowEvent windowEvent) {
+                System.out.println("Cerrando");
+                cosa();
+                super.windowClosing(windowEvent);
+            }
+        });
+
         clientes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vistaClientes.ejecutarVentanaClientes();
+                vistaClientes.ejecutarVentanaClientes(modeloCliente);
             }
         });
 
         facturas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaFacturas.ejecutarVentanaFacturas();
+                vistaFacturas.ejecutarVentanaFacturas(modeloFactura);
             }
         });
 
         llamadas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaLlamadas.ejecutarVentanaLlamadas();
+                vistaLlamadas.ejecutarVentanaLlamadas(modeloLlamada);
             }
         });
     }

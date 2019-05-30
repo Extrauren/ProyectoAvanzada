@@ -1,7 +1,5 @@
 package Vista.VClientes;
 
-import Controlador.Cliente;
-import Modelo.Excepciones.ClienteNoExisteException;
 import Modelo.ModeloCliente;
 
 import javax.swing.*;
@@ -11,13 +9,10 @@ import java.awt.event.ActionListener;
 
 public class VistaMostrarCliente extends JDialog {
 
-    private ModeloCliente modeloCliente;
-
     public VistaMostrarCliente(){
-        this.modeloCliente = new ModeloCliente();
     }
 
-    public void ejecutaMostrarCLiente(){
+    public void ejecutaMostrarCLiente(ModeloCliente modeloCliente){
         this.setTitle("Listar Cliente");
         this.setVisible(true);
         this.setModal(true);
@@ -47,6 +42,5 @@ public class VistaMostrarCliente extends JDialog {
                 cliente.setListData(modeloCliente.recuperarClientePorDNI(nif.getText()));
             }
         });
-
     }
 }

@@ -1,26 +1,33 @@
 package Modelo.Ejecutar;
 
+import Vista.VentanaPrincipal;
+
 import java.io.*;
 
 public class GuardarDatos implements Serializable{
-    public void escritura(AlmacenDatos menu) throws IOException {
+    public static void escritura(VentanaPrincipal ventana) throws IOException {
         try {
-            FileOutputStream fout = new FileOutputStream("Datos.obj");
+            File fich = new File("Datos.obj");
+            if (fich.createNewFile())
+                System.out.println("no existia, se ha creado el fichero");
+
+            FileOutputStream fout = new FileOutputStream(fich);
             ObjectOutputStream oout = new ObjectOutputStream(fout);
 
-            oout.writeObject(menu);
+            oout.writeObject(ventana);
 
-            oout.close();
+
+
         }catch (FileNotFoundException e) {
-            System.out.println("Error, no se ha creado el fichero");
+            System.out.println("error no fichero");
         }catch (IOException e){
-            System.out.println("Error, no se ha escrito");
+            System.out.println("error no escritura");
         }
     }
 
-    public Menu lectura(){
+    public static VentanaPrincipal lectura(){
         ObjectInputStream oois = null;
-        Menu menu = new Menu();
+        VentanaPrincipal ventana = new VentanaPrincipal();
 
         try{
 
@@ -29,11 +36,11 @@ public class GuardarDatos implements Serializable{
             oois = new ObjectInputStream(ffis);
 
 
-            menu = (Menu) oois.readObject();
+            ventana = (VentanaPrincipal) oois.readObject();
             System.out.println("Fichero leido de forma correcta.");
 
         } catch(FileNotFoundException e){
-            System.out.println("file exception");
+            System.out.println("No existe el fichero");
         } catch(IOException e){
             System.out.println("Io exception");
             e.printStackTrace();
@@ -42,6 +49,6 @@ public class GuardarDatos implements Serializable{
         }
 
         //oois.close();
-        return menu;
+        return ventana;
     }
 }

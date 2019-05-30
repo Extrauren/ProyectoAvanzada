@@ -10,13 +10,13 @@ import java.awt.event.ActionListener;
 
 public class VistaEmitirFactura extends JDialog {
 
-    private ModeloFactura modeloFactura;
+
 
     public VistaEmitirFactura(){
-        this.modeloFactura = new ModeloFactura();
+
     }
 
-    public void ejecutarEmitirFactura(){
+    public void ejecutarEmitirFactura(ModeloFactura modeloFactura){
 
         this.setTitle("Emitir Factiras");
         this.setVisible(true);

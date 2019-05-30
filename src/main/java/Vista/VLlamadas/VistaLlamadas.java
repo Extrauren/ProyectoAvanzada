@@ -9,17 +9,15 @@ import java.awt.event.ActionListener;
 
 public class VistaLlamadas extends JDialog {
 
-    private ModeloLlamada modeloLlamada;
     private VistaAltaLlamada vistaAltaLlamada;
     private VistaListaLlamadas vistaListaLlamadas;
 
     public VistaLlamadas(){
-        this.modeloLlamada = new ModeloLlamada();
         this.vistaAltaLlamada = new VistaAltaLlamada();
         this.vistaListaLlamadas = new VistaListaLlamadas();
     }
 
-    public void ejecutarVentanaLlamadas() {
+    public void ejecutarVentanaLlamadas(ModeloLlamada modeloLlamada) {
 
         JButton alta = new JButton("Alta Llamada");
         alta.setBackground(Color.lightGray);
@@ -44,14 +42,14 @@ public class VistaLlamadas extends JDialog {
         alta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaAltaLlamada.ejecutaAltaLlamada();
+                vistaAltaLlamada.ejecutaAltaLlamada(modeloLlamada);
             }
         });
 
         listar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaListaLlamadas.ejecutarListarLlamadas();
+                vistaListaLlamadas.ejecutarListarLlamadas(modeloLlamada);
             }
         });
 

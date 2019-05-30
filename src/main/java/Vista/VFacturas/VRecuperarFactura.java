@@ -10,13 +10,12 @@ import java.awt.event.ActionListener;
 
 public class VRecuperarFactura extends JDialog {
 
-    private ModeloFactura modeloFactura;
+
 
     public VRecuperarFactura(){
-        this.modeloFactura = new ModeloFactura();
     }
 
-    public void ejecutarRecuperarFactura(){
+    public void ejecutarRecuperarFactura(ModeloFactura modeloFactura){
 
         this.setTitle("Recuperar Factura");
         this.setVisible(true);
