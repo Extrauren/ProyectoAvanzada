@@ -1,5 +1,6 @@
 package Vista.VClientes;
 
+import Controlador.Controlador;
 import Modelo.ModeloCliente;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.io.Serializable;
 
 public class VistaClientes extends JDialog implements Serializable {
 
-
+    private Controlador control;
     private VistaInsertarCliente vistaInsertarCliente;
     private VistaEliminarCliente vistaEliminarCliente;
     private VistaListarClientes vistaListarClientes;
@@ -26,7 +27,9 @@ public class VistaClientes extends JDialog implements Serializable {
     }
 
 
-    public void ejecutarVentanaClientes(ModeloCliente modeloCliente) {
+    public void ejecutarVentanaClientes(Controlador control) {
+
+        this.control = control;
 
         JLabel nada = new JLabel();
         JButton insertar = new JButton("Insertar Cliente");
@@ -61,35 +64,37 @@ public class VistaClientes extends JDialog implements Serializable {
         insertar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaInsertarCliente.ejecutaInsertarCliente(modeloCliente);
+                vistaInsertarCliente = new VistaInsertarCliente();
+                vistaInsertarCliente.ejecutaInsertarCliente(control);
             }
         });
 
         eliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaEliminarCliente.ejecutaEliminarCliente(modeloCliente);
+                vistaEliminarCliente.ejecutaEliminarCliente(control);
             }
         });
 
         listar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaListarClientes.ejecutaListarClientes(modeloCliente);
+                vistaListarClientes = new VistaListarClientes();
+                vistaListarClientes.ejecutaListarClientes(control);
             }
         });
 
         listaruno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaMostrarCliente.ejecutaMostrarCLiente(modeloCliente);
+                vistaMostrarCliente.ejecutaMostrarCLiente(control);
             }
         });
 
         cambiarTarifa.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaCambiarTarifa.ejecutaCambiarTarifa(modeloCliente);
+                vistaCambiarTarifa.ejecutaCambiarTarifa(control);
             }
         });
     }

@@ -1,8 +1,10 @@
 package Vista.VClientes;
 
+import Controlador.Controlador;
 import Modelo.Excepciones.ClienteNoExisteException;
 import Modelo.ModeloCliente;
 
+import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,7 @@ public class VistaEliminarCliente extends JDialog {
     VistaEliminarCliente(){
     }
 
-    public void ejecutaEliminarCliente(ModeloCliente modeloCliente){
+    public void ejecutaEliminarCliente(Controlador con){
 
         this.setTitle("Eliminar Cliente");
         this.setVisible(true);
@@ -40,7 +42,7 @@ public class VistaEliminarCliente extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    modeloCliente.borrarCliente(nif.getText());
+                    con.borrarCliente(introduceNIF.getText());
                 } catch (ClienteNoExisteException e) {
                     e.printStackTrace();
                 }

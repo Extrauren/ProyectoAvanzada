@@ -50,7 +50,7 @@ public class Cliente implements Serializable, Fecha {
     }
 
     public String toString(){
-       String cadena = this.nombre + " / " + this.NIF + " / " + this.direccion + " / " + this.correo + " / " + this.tarifa;
+       String cadena = this.nombre + " / " + this.NIF + " / " + this.direccion + " / " + this.correo + " / " + this.tarifa.toString();
        return cadena;
     }
 

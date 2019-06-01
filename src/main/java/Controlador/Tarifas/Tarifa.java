@@ -21,4 +21,8 @@ public class Tarifa implements Serializable {
         this.precio = precio;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(precio);
+    }
 }

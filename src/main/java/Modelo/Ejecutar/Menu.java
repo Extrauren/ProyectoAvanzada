@@ -35,7 +35,7 @@ public class Menu implements Serializable {
         modeloMenu = new ModeloMenu();
         modeloCliente = new ModeloCliente();
         modeloLlamada = new ModeloLlamada();
-        modeloFactura = new ModeloFactura();
+        modeloFactura = new ModeloFactura(modeloCliente, modeloLlamada);
         modeloGenerico = new ModeloGenerico();
         fabricaTarifa = new FabricaTarifa();
         fabricaCliente = new FabricaCliente();

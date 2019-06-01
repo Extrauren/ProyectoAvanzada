@@ -1,5 +1,6 @@
 package Vista.VLlamadas;
 
+import Controlador.Controlador;
 import Modelo.ModeloLlamada;
 
 import javax.swing.*;
@@ -9,15 +10,15 @@ import java.awt.event.ActionListener;
 
 public class VistaLlamadas extends JDialog {
 
-    private VistaAltaLlamada vistaAltaLlamada;
-    private VistaListaLlamadas vistaListaLlamadas;
+    //private VistaAltaLlamada vistaAltaLlamada;
+    //private VistaListaLlamadas vistaListaLlamadas;
 
     public VistaLlamadas(){
-        this.vistaAltaLlamada = new VistaAltaLlamada();
-        this.vistaListaLlamadas = new VistaListaLlamadas();
+        //this.vistaAltaLlamada = new VistaAltaLlamada();
+        //this.vistaListaLlamadas = new VistaListaLlamadas();
     }
 
-    public void ejecutarVentanaLlamadas(ModeloLlamada modeloLlamada) {
+    public void ejecutarVentanaLlamadas(Controlador con) {
 
         JButton alta = new JButton("Alta Llamada");
         alta.setBackground(Color.lightGray);
@@ -42,14 +43,14 @@ public class VistaLlamadas extends JDialog {
         alta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaAltaLlamada.ejecutaAltaLlamada(modeloLlamada);
+                new VistaAltaLlamada().ejecutaAltaLlamada(con);
             }
         });
 
         listar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaListaLlamadas.ejecutarListarLlamadas(modeloLlamada);
+                new VistaListaLlamadas().ejecutarListarLlamadas(con);
             }
         });
 

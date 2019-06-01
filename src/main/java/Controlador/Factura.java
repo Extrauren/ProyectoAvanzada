@@ -14,11 +14,11 @@ public class Factura implements Serializable, Fecha {
     private Calendar fechaIni;
     private float importe;
 
-    public Factura(String codfac, Tarifa tarifa, Calendar fechaFin, float importe){
+    public Factura(String codfac, Tarifa tarifa, Calendar fechaIni, float importe){
         this.codfac = codfac;
         this.tarifa = tarifa;
-        this.fechaIni = Calendar.getInstance();
-        this.fechaFin = fechaFin;
+        this.fechaIni = fechaIni;
+        this.fechaFin = Calendar.getInstance();
         this.importe = importe;
     }
 

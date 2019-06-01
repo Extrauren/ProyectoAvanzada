@@ -1,5 +1,6 @@
 package Vista.VClientes;
 
+import Controlador.Controlador;
 import Modelo.ModeloCliente;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ public class VistaMostrarCliente extends JDialog {
     public VistaMostrarCliente(){
     }
 
-    public void ejecutaMostrarCLiente(ModeloCliente modeloCliente){
+    public void ejecutaMostrarCLiente(Controlador con){
         this.setTitle("Listar Cliente");
         this.setVisible(true);
         this.setModal(true);
@@ -39,7 +40,7 @@ public class VistaMostrarCliente extends JDialog {
         aceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                cliente.setListData(modeloCliente.recuperarClientePorDNI(nif.getText()));
+                cliente.setListData(con.recuperaClienteDni(nif.getText()));
             }
         });
     }

@@ -1,6 +1,8 @@
 package Vista.VFacturas;
 
+import Controlador.Controlador;
 import Modelo.ModeloFactura;
+import Vista.VentanaGenerica;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +16,7 @@ public class VListarFacturas extends JDialog {
     public VListarFacturas(){
     }
 
-    public void ejecutaListarFacturas(ModeloFactura modeloFactura){
+    public void ejecutaListarFacturas(Controlador con){
         this.setTitle("Listar Facturas");
         this.setVisible(true);
         this.setModal(true);
@@ -32,7 +34,9 @@ public class VListarFacturas extends JDialog {
         aceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                modeloFactura.listarFacturas();
+
+                String fact = con.listarFacturas();
+                VentanaGenerica.ventanaMostrar("lista de facturas", fact);
             }
         });
 

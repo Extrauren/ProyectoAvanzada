@@ -1,7 +1,9 @@
 package Vista.VFacturas;
 
+import Controlador.Controlador;
 import Modelo.Excepciones.FacturaNoExisteException;
 import Modelo.ModeloFactura;
+import Vista.VentanaGenerica;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +17,7 @@ public class VRecuperarFactura extends JDialog {
     public VRecuperarFactura(){
     }
 
-    public void ejecutarRecuperarFactura(ModeloFactura modeloFactura){
+    public void ejecutarRecuperarFactura(Controlador con){
 
         this.setTitle("Recuperar Factura");
         this.setVisible(true);
@@ -41,7 +43,9 @@ public class VRecuperarFactura extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    modeloFactura.getFacturaCodigo(texto.getText());
+                    String nif = texto.getText();
+                    String fact = con.recuperaFactura(nif);
+                    VentanaGenerica.ventanaMostrar("Factura de "+nif, fact);
                 } catch (FacturaNoExisteException e) {
                     e.printStackTrace();
                 }

@@ -2,6 +2,7 @@ package Vista.VClientes;
 
 
 import Controlador.Cliente;
+import Controlador.Controlador;
 import Controlador.Tarifas.Tarifa;
 import Modelo.Factory.FabricaCliente;
 import Modelo.Factory.FabricaTarifa;
@@ -16,15 +17,14 @@ import java.util.Calendar;
 
 public class VistaInsertarCliente extends JDialog {
 
-    private FabricaCliente fabricaCliente;
-    private FabricaTarifa fabricaTarifa;
+    private Controlador control;
 
     VistaInsertarCliente(){
-        this.fabricaCliente = new FabricaCliente();
-        this.fabricaTarifa = new FabricaTarifa();
+
     }
 
-    public void ejecutaInsertarCliente(ModeloCliente modeloCliente){
+    public void ejecutaInsertarCliente(Controlador control){
+        this.control = control;
 
         this.setTitle("Anyadir Cliente");
         this.setVisible(true);
@@ -76,18 +76,11 @@ public class VistaInsertarCliente extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                Tarifa tarifa = fabricaTarifa.getTarifaBasica(0.15f);
-                ArrayList<Tarifa> tarifas = new ArrayList<>();
-                tarifas.add(tarifa);
-                Cliente cliente;
-
                 if(radioButton.isSelected()){
-                    cliente = fabricaCliente.getClienteParticular(introducirNombre.getText(), introducirNIF.getText(), introducirDir.getText(), introducirCorreo.getText(), Calendar.getInstance(), tarifas, apellido.getText());
-                    modeloCliente.anyadeClietne(cliente);
+                    control.insertaClientePar(introducirNombre.getText(), introducirNIF.getText(), introducirDir.getText(), introducirCorreo.getText(), apellido.getText());
+
                 }else{
-                    cliente = fabricaCliente.getClienteEmpresa(introducirNombre.getText(), introducirNIF.getText(), introducirDir.getText(), introducirCorreo.getText(), Calendar.getInstance(), tarifas);
-                    modeloCliente.anyadeClietne(cliente);
-                    modeloCliente.listarClientes();
+                    control.insertarClienteEm(introducirNombre.getText(), introducirNIF.getText(), introducirDir.getText(), introducirCorreo.getText());
                 }
 
 

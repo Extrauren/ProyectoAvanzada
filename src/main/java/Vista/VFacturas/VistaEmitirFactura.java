@@ -1,5 +1,6 @@
 package Vista.VFacturas;
 
+import Controlador.Controlador;
 import Modelo.Excepciones.ClienteNoExisteException;
 import Modelo.ModeloFactura;
 
@@ -16,7 +17,7 @@ public class VistaEmitirFactura extends JDialog {
 
     }
 
-    public void ejecutarEmitirFactura(ModeloFactura modeloFactura){
+    public void ejecutarEmitirFactura(Controlador con){
 
         this.setTitle("Emitir Factiras");
         this.setVisible(true);
@@ -42,7 +43,7 @@ public class VistaEmitirFactura extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    modeloFactura.emitirFactura(texto.getText());
+                    con.emitirFactura(texto.getText());
                 } catch (ClienteNoExisteException e) {
                     e.printStackTrace();
                 }

@@ -14,7 +14,7 @@ public class Aplicacion implements Serializable {
         menu.main();*/
 
         //En caso de ejecutar la version gráfica
-        VentanaPrincipal vp = new VentanaPrincipal();
+        VentanaPrincipal vp = new VentanaPrincipal(data.lectura());
         vp.ensenyaVentanaPrincipal();
     }
 }

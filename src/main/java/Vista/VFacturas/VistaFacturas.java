@@ -1,5 +1,6 @@
 package Vista.VFacturas;
 
+import Controlador.Controlador;
 import Modelo.ModeloFactura;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class VistaFacturas extends JDialog {
         this.vRecuperarFactura = new VRecuperarFactura();
     }
 
-    public void ejecutarVentanaFacturas(ModeloFactura modeloFactura) {
+    public void ejecutarVentanaFacturas(Controlador con) {
 
         JLabel nada = new JLabel();
         JButton emitir = new JButton("Emitir Una Factura");
@@ -49,21 +50,21 @@ public class VistaFacturas extends JDialog {
         emitir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vistaEmitirFactura.ejecutarEmitirFactura(modeloFactura);
+                vistaEmitirFactura.ejecutarEmitirFactura(con);
             }
         });
 
         listar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vListarFacturas.ejecutaListarFacturas(modeloFactura);
+                vListarFacturas.ejecutaListarFacturas(con);
             }
         });
 
         mostrarFactura.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vRecuperarFactura.ejecutarRecuperarFactura(modeloFactura);
+                vRecuperarFactura.ejecutarRecuperarFactura(con);
             }
         });
     }

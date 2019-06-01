@@ -1,5 +1,6 @@
 package Vista.VLlamadas;
 
+import Controlador.Controlador;
 import Modelo.ModeloLlamada;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ public class VistaAltaLlamada extends JDialog {
     public VistaAltaLlamada(){
     }
 
-    public void ejecutaAltaLlamada(ModeloLlamada  modeloLlamada){
+    public void ejecutaAltaLlamada(Controlador con){
         this.setTitle("Dar de alta una llamada");
         this.setVisible(true);
         this.setModal(true);
@@ -31,10 +32,10 @@ public class VistaAltaLlamada extends JDialog {
         JTextField textTelefono = new JTextField();
         this.add(textTelefono);
 
-        JLabel fechaAlta = new JLabel("Introduce la fecha: ", SwingConstants.CENTER);
+        /*JLabel fechaAlta = new JLabel("Introduce la fecha: ", SwingConstants.CENTER);
         this.add(fechaAlta);
         JTextField textFecha = new JTextField("(dd/mm/yyyy)");
-        this.add(textFecha);
+        this.add(textFecha);*/
 
         JLabel duracion = new JLabel("Introduce la duracion: ", SwingConstants.CENTER);
         this.add(duracion);
@@ -53,7 +54,7 @@ public class VistaAltaLlamada extends JDialog {
         aceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                modeloLlamada.altaLLamada(texNif.getText(), Integer.parseInt(textTelefono.getText()), Float.parseFloat(textDuracion.getText()));
+                con.altaLlamada(texNif.getText(), Integer.parseInt(textTelefono.getText()), Float.parseFloat(textDuracion.getText()));
             }
         });
 

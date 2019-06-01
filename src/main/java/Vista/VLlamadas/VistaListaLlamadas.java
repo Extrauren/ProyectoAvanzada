@@ -1,6 +1,8 @@
 package Vista.VLlamadas;
 
+import Controlador.Controlador;
 import Modelo.ModeloLlamada;
+import Vista.VentanaGenerica;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +15,7 @@ public class VistaListaLlamadas extends JDialog {
 
     }
 
-    public void ejecutarListarLlamadas(ModeloLlamada modeloLlamada) {
+    public void ejecutarListarLlamadas(Controlador con) {
         this.setTitle("Listar Llamadas");
         this.setVisible(true);
         this.setModal(true);
@@ -37,7 +39,9 @@ public class VistaListaLlamadas extends JDialog {
         aceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                modeloLlamada.muestraLlamadaCliente(texto.getText());
+                String nif = texto.getText();
+                String llamada = con.muestraLlamadaCliente(nif);
+                VentanaGenerica.ventanaMostrar("Llamada de "+nif, llamada);
             }
         });
 

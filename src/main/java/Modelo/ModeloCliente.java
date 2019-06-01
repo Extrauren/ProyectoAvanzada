@@ -17,8 +17,9 @@ public class ModeloCliente implements Serializable {
     HashMap<String, Cliente> mapaClientes = new HashMap<>();
     ArrayList<Cliente> listaClietnes = new ArrayList<>();
 
-    public  void mostrarClientes(){
-        System.out.println(mapaClientes.toString());
+    public String mostrarClientes(){
+        //System.out.println(mapaClientes.toString());
+        return mapaClientes.toString();
     }
 
     public  HashMap<String, Cliente> getMapaClientes(){
@@ -54,12 +55,11 @@ public class ModeloCliente implements Serializable {
         return unCliente;
     }
     public void borrarCliente(String NIF) throws ClienteNoExisteException{
+        System.out.println(NIF);
+        Cliente cli = recuperarClientePorDNI(NIF)[0];
         mapaClientes.remove(NIF);
-        for(int i =0; i<getNumClientes(); i++){
-            if(listaClietnes.get(i).getNIF().equals(NIF)){
-                listaClietnes.remove(i);
-            }
-        }
+        listaClietnes.remove(cli);
+
     }
 
     public void cambiaTarifa(String NIF, ArrayList<Tarifa> tarifa) throws  ClienteNoExisteException{   //Luego se cambia por la clase Tarifa
@@ -77,10 +77,12 @@ public class ModeloCliente implements Serializable {
 
     }
 
-    public String listadoClientes(){
-        String salida = "";
+    public String[] listadoClientes(){
+        String[] salida = new String[listaClietnes.size()];
+        int i=0;
         for(Cliente c : this.listaClietnes){
-            salida = salida + c.toString();
+            salida[i] = c.toString();
+            i++;
         }
         return salida;
     }

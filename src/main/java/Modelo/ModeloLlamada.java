@@ -13,7 +13,9 @@ public class ModeloLlamada implements Serializable {
 
     public void altaLLamada(String NIF, int telefono,  float duracion){
         Llamada llamada;
-        ArrayList<Llamada> llamadas= new ArrayList<>();
+        ArrayList<Llamada> llamadas=mapaLlamadas.get(NIF);
+        if(llamadas==null)
+            llamadas = new ArrayList<Llamada>();
         llamada = new Llamada(telefono, duracion);
         llamadas.add(llamada);
         mapaLlamadas.put(NIF, llamadas);

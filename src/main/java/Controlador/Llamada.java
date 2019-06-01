@@ -3,6 +3,7 @@ package Controlador;
 import Modelo.Interfaces.Fecha;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Llamada implements Serializable, Fecha {
@@ -28,5 +29,14 @@ public class Llamada implements Serializable, Fecha {
 
     public float getDuracion(){
         return this.duracion;
+    }
+
+    private String fechaTexto(Calendar fecha){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(fecha.getTime());
+    }
+
+    public String toString(){
+        return "Telefono: "+ telefono + ", fecha: "+fechaTexto(fechaLlamada)+", duracion: "+duracion;
     }
 }

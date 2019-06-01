@@ -1,5 +1,6 @@
 package Vista.VClientes;
 
+import Controlador.Controlador;
 import Modelo.ModeloCliente;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ public class VistaCambiarTarifa extends JDialog {
     public VistaCambiarTarifa() {
     }
 
-    public void ejecutaCambiarTarifa(ModeloCliente modeloCliente) {
+    public void ejecutaCambiarTarifa(Controlador con) {
         this.setTitle("Cambiar Tarifa");
         this.setVisible(true);
         this.setModal(true);

@@ -1,11 +1,12 @@
 package Modelo.Ejecutar;
 
+import Controlador.Controlador;
 import Vista.VentanaPrincipal;
 
 import java.io.*;
 
 public class GuardarDatos implements Serializable{
-    public static void escritura(VentanaPrincipal ventana) throws IOException {
+    public static void escritura(Controlador control) throws IOException {
         try {
             File fich = new File("Datos.obj");
             if (fich.createNewFile())
@@ -14,8 +15,9 @@ public class GuardarDatos implements Serializable{
             FileOutputStream fout = new FileOutputStream(fich);
             ObjectOutputStream oout = new ObjectOutputStream(fout);
 
-            oout.writeObject(ventana);
-
+            oout.writeObject(control);
+            fout.close();
+            oout.close();
 
 
         }catch (FileNotFoundException e) {
@@ -25,9 +27,9 @@ public class GuardarDatos implements Serializable{
         }
     }
 
-    public static VentanaPrincipal lectura(){
+    public Controlador lectura(){
         ObjectInputStream oois = null;
-        VentanaPrincipal ventana = new VentanaPrincipal();
+        Controlador control= new Controlador();
 
         try{
 
@@ -36,7 +38,7 @@ public class GuardarDatos implements Serializable{
             oois = new ObjectInputStream(ffis);
 
 
-            ventana = (VentanaPrincipal) oois.readObject();
+            control = (Controlador) oois.readObject();
             System.out.println("Fichero leido de forma correcta.");
 
         } catch(FileNotFoundException e){
@@ -49,6 +51,6 @@ public class GuardarDatos implements Serializable{
         }
 
         //oois.close();
-        return ventana;
+        return control;
     }
 }

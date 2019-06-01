@@ -1,5 +1,6 @@
 package Vista.VClientes;
 
+import Controlador.Controlador;
 import Modelo.ModeloCliente;
 
 import javax.swing.*;
@@ -13,7 +14,7 @@ public class VistaListarClientes extends JDialog {
     public VistaListarClientes(){
     }
 
-    public void ejecutaListarClientes(ModeloCliente modeloCliente){
+    public void ejecutaListarClientes(Controlador con){
         this.setTitle("Listar Cliente");
         this.setVisible(true);
         this.setModal(true);
@@ -25,22 +26,26 @@ public class VistaListarClientes extends JDialog {
         JLabel intro = new JLabel("Listado de todos los clientes de la base de datos: ", SwingConstants.CENTER);
         this.add(intro);
 
-        JLabel clientes = new JLabel();
-        this.add(clientes);
+        JList otro = new JList(con.listadoClientes());
+        this.add(otro);
+        //JLabel clientes = new JLabel();
+        //this.add(clientes);
 
 
-        JButton mostrar = new JButton("Mostrar");
-        mostrar.setBackground(Color.cyan);
-        this.add(mostrar);
+        //JButton mostrar = new JButton("Mostrar");
+        //mostrar.setBackground(Color.cyan);
+        //this.add(mostrar);
+        //llamar al controlador
+
 
         //zona action listeners
 
-        mostrar.addActionListener(new ActionListener() {
+        /*mostrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 modeloCliente.listarClientes();
             }
-        });
+        });*/
     }
 
 

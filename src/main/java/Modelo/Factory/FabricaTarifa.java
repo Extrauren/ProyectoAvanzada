@@ -6,7 +6,9 @@ import Controlador.Tarifas.TarifaDias;
 import Controlador.Tarifas.TarifaHoras;
 import Modelo.Interfaces.IFabricaTarifas;
 
-public class FabricaTarifa implements IFabricaTarifas {
+import java.io.Serializable;
+
+public class FabricaTarifa implements IFabricaTarifas, Serializable {
 
     public FabricaTarifa(){
         super();

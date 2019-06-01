@@ -6,10 +6,11 @@ import Controlador.Particular;
 import Controlador.Tarifas.Tarifa;
 import Modelo.Interfaces.IFabricaClientes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class FabricaCliente implements IFabricaClientes {
+public class FabricaCliente implements IFabricaClientes, Serializable {
 
     public FabricaCliente(){
         super();
