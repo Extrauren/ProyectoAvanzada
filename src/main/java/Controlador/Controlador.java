@@ -71,7 +71,7 @@ public class Controlador implements Serializable {
 
     public String[] listarFacturas(){
         ArrayList<Factura> lista = modeloFactura.getListaFacturas();
-        if(lista==null){
+        if(lista==null || lista.size()==0){
             String[] aux = new String[1];
             aux[0] = "lista vacia";
             return aux;
@@ -85,7 +85,10 @@ public class Controlador implements Serializable {
     }
 
     public String recuperaFactura(String dat) throws FacturaNoExisteException {
-        return modeloFactura.getFacturaCodigo(dat).toString();
+        Factura aux = modeloFactura.getFacturaCodigo(dat);
+        if(aux==null)
+            return "No existe esta factura";
+        return aux.toString();
     }
 
 

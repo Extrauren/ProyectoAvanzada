@@ -63,6 +63,7 @@ public class ModeloFactura implements Serializable {
         System.out.println("El importe de la factura es: " + importe);
         String codfac = String.valueOf(listaFacturas.size()+1);
         Factura nueva = new Factura(nif,codfac, tarifa, fechaIni,importe);
+        System.out.println(nueva.toString());
         listaFacturas.add(nueva);
         mapaFactuarsCod.put(codfac, nueva);
     }

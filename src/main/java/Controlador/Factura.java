@@ -39,8 +39,8 @@ public class Factura implements Serializable, Fecha {
         return "Nif: " + NIF
                 +" Codigo: " + codfac
                 +" tarifa: " + tarifa
-                +" fecha inicio: " + fechaIni
-                +" fecha fin: " + fechaFin
+                +" fecha inicio: " + fechaTexto(fechaIni)
+                +" fecha fin: " + fechaTexto(fechaFin)
                 +" importe: " + importe;
     }
 }

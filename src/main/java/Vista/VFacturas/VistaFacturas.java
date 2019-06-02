@@ -67,6 +67,13 @@ public class VistaFacturas extends JDialog {
                 vRecuperarFactura.ejecutarRecuperarFactura(con);
             }
         });
+
+        cancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                dispose();
+            }
+        });
     }
 
 }

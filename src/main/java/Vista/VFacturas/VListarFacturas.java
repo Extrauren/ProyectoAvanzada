@@ -25,7 +25,10 @@ public class VListarFacturas extends JDialog {
 
         //elementos graficos
 
-        JButton aceptar = new JButton("Aceptar");
+        JList otro = new JList(con.listarFacturas());
+        this.add(otro);
+
+        /*JButton aceptar = new JButton("Aceptar");
         aceptar.setBackground(Color.yellow);
         this.add(aceptar);
 
@@ -38,7 +41,7 @@ public class VListarFacturas extends JDialog {
                 String[] fact = con.listarFacturas();
                 VentanaGenerica.ventanaMostrarLista("lista de facturas", fact);
             }
-        });
+        });*/
 
 
 

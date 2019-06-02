@@ -55,6 +55,7 @@ public class VistaAltaLlamada extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 con.altaLlamada(texNif.getText(), Integer.parseInt(textTelefono.getText()), Float.parseFloat(textDuracion.getText()));
+                dispose();
             }
         });
 

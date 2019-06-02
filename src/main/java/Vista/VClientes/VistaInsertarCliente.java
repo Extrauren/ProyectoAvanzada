@@ -82,7 +82,7 @@ public class VistaInsertarCliente extends JDialog {
                 }else{
                     control.insertarClienteEm(introducirNombre.getText(), introducirNIF.getText(), introducirDir.getText(), introducirCorreo.getText());
                 }
-
+                dispose();
 
             }
         });

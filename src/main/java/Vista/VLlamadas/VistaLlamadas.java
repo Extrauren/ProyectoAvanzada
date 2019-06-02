@@ -54,6 +54,13 @@ public class VistaLlamadas extends JDialog {
             }
         });
 
+        cancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                dispose();
+            }
+        });
+
     }
 
 }
