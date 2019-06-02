@@ -40,8 +40,8 @@ public class VistaListaLlamadas extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String nif = texto.getText();
-                String llamada = con.muestraLlamadaCliente(nif);
-                VentanaGenerica.ventanaMostrar("Llamada de "+nif, llamada);
+                String[] llamadas = con.muestraLlamadaCliente(nif);
+                VentanaGenerica.ventanaMostrarLista("Llamada de "+nif, llamadas);
             }
         });
 

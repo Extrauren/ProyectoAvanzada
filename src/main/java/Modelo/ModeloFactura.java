@@ -61,8 +61,10 @@ public class ModeloFactura implements Serializable {
             }*/
         }
         System.out.println("El importe de la factura es: " + importe);
-        Factura nueva = new Factura(String.valueOf(listaFacturas.size()+1), tarifa, fechaIni,importe);
-
+        String codfac = String.valueOf(listaFacturas.size()+1);
+        Factura nueva = new Factura(nif,codfac, tarifa, fechaIni,importe);
+        listaFacturas.add(nueva);
+        mapaFactuarsCod.put(codfac, nueva);
     }
 
     public Factura getFacturaCodigo(String codfac) throws FacturaNoExisteException {
@@ -70,7 +72,7 @@ public class ModeloFactura implements Serializable {
     }
 
     public String listarFacturas(){
-        System.out.println(mapaFactuarsCod.toString());
+        //System.out.println(mapaFactuarsCod.toString());
         return  mapaFactuarsCod.toString();
     }
 

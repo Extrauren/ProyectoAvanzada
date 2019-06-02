@@ -19,4 +19,17 @@ public class VentanaGenerica {
         vent.setVisible(true);
     }
 
+    public static void ventanaMostrarLista(String titulo, String[] datos){
+        JDialog vent = new JDialog();
+        vent.setTitle(titulo);
+        Container cont = vent.getContentPane();
+        cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
+        JList lista = new JList(datos);
+        vent.getContentPane().add(lista);
+        vent.pack();
+        //vent.setLayout(new FlowLayout());
+        vent.setVisible(true);
+
+    }
+
 }

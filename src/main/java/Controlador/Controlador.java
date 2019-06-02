@@ -69,8 +69,19 @@ public class Controlador implements Serializable {
         modeloFactura.emitirFactura(texto);
     }
 
-    public String listarFacturas(){
-        return modeloFactura.listarFacturas();
+    public String[] listarFacturas(){
+        ArrayList<Factura> lista = modeloFactura.getListaFacturas();
+        if(lista==null){
+            String[] aux = new String[1];
+            aux[0] = "lista vacia";
+            return aux;
+        }
+        String[] aux = new String[lista.size()];
+
+        for(int i=0 ; i<lista.size(); i++) {
+            aux[i] = lista.get(i).toString();
+        }
+        return aux;
     }
 
     public String recuperaFactura(String dat) throws FacturaNoExisteException {
@@ -80,15 +91,20 @@ public class Controlador implements Serializable {
 
     //llamadas
 
-    public String muestraLlamadaCliente(String dat){
+    public String[] muestraLlamadaCliente(String dat){
         ArrayList<Llamada> lista = modeloLlamada.muestraLlamadaCliente(dat);
-        if(lista==null)
-            return "lista vacia";
-        String text = "";
-        for(int i=0 ; i<lista.size(); i++) {
-            text+= lista.get(i).toString() + "\n";
+
+        if(lista==null){
+            String[] aux = new String[1];
+            aux[0] = "lista vacia";
+            return aux;
         }
-        return text;
+        String[] aux = new String[lista.size()];
+
+        for(int i=0 ; i<lista.size(); i++) {
+            aux[i] = lista.get(i).toString();
+        }
+        return aux;
 
 
     }

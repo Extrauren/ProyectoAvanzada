@@ -35,8 +35,8 @@ public class VListarFacturas extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                String fact = con.listarFacturas();
-                VentanaGenerica.ventanaMostrar("lista de facturas", fact);
+                String[] fact = con.listarFacturas();
+                VentanaGenerica.ventanaMostrarLista("lista de facturas", fact);
             }
         });
 
