@@ -21,6 +21,8 @@ public class VistaMostrarCliente extends JDialog {
 
         //Elementos Graficos
 
+        JPanel vClientes = new JPanel();
+
         JLabel intro = new JLabel("Introduce el NIF de un cliente para mostrar sus datos: ", SwingConstants.CENTER);
         this.add(intro);
 
@@ -39,6 +41,11 @@ public class VistaMostrarCliente extends JDialog {
         aceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
+                if(nif.getText().equals("") || nif.getText().length() != 9) {
+                    JOptionPane.showMessageDialog(vClientes, "El dni no cumple con el formato 8N 1L :NNNNNNNNL");
+                    return;
+                }
                 cliente.setListData(con.recuperaClienteDni(nif.getText()));
             }
         });

@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class ControladorLlamada implements Serializable {
 
 
-    HashMap<String, ArrayList<Llamada>> mapaLlamadas = new HashMap<>();            // NIF clave y llamada valor (posible añadir otro mapa)
+    HashMap<String, ArrayList<Llamada>> mapaLlamadas = new HashMap<>();            // NIF clave y llamada valor
     ArrayList<Llamada> listaLlamadas = new ArrayList<>();
 
     public void altaLLamada(String NIF, int telefono,  float duracion){

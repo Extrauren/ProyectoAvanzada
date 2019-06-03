@@ -23,6 +23,8 @@ public class VistaListaLlamadas extends JDialog {
 
         //elementos grafcos
 
+        JPanel vLlamada = new JPanel();
+
         JLabel info = new JLabel("Introduce el nif del cliente del que quieras recuperar sus llamadas: ", SwingConstants.CENTER);
         this.add(info);
 
@@ -39,6 +41,11 @@ public class VistaListaLlamadas extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String nif = texto.getText();
+                if(nif.equals("") || nif.length() != 9) {
+                    JOptionPane.showMessageDialog(vLlamada, "El dni no cumple con el formato 8N 1L :NNNNNNNNL");
+                    return;
+                }
+
                 String[] llamadas = con.muestraLlamadaCliente(nif);
                 VentanaGenerica.ventanaMostrarLista("Llamada de "+nif, llamadas);
                 dispose();

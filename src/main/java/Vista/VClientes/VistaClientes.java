@@ -30,7 +30,6 @@ public class VistaClientes extends JDialog implements Serializable {
 
         this.control = control;
 
-        JLabel nada = new JLabel();
         JButton insertar = new JButton("Insertar Cliente");
         insertar.setBackground(Color.lightGray);
         JButton eliminar = new JButton("Eliminar Cliente");
@@ -52,7 +51,7 @@ public class VistaClientes extends JDialog implements Serializable {
         this.add(eliminar);
         this.add(listar);
         this.add(listaruno);
-        this.add(cambiarTarifa);
+        //this.add(cambiarTarifa);
         this.add(cancelar);
 
         this.setModal(true);

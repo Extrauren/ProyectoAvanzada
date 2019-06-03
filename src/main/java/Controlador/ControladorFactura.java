@@ -25,23 +25,10 @@ public class ControladorFactura implements Serializable {
     }
 
     public void emitirFactura(String nif) throws ClienteNoExisteException {
-        FabricaTarifa fabricaTarifa = new FabricaTarifa();
         ArrayList<Tarifa> tarifas = controladorCliente.getCliente(nif).getTarifa();
         ArrayList<Llamada> llamadas = controladorLlamada.muestraLlamadaCliente(nif);
-        boolean tieneHoras = false;
-        boolean tieneDias = false;
-        //TarifaDias tarifaDias = null;
-        //TarifaHoras tarifaHoras = null;
         Tarifa tarifa = tarifas.get(0);
-        /*for(Tarifa tarifa : tarifas){
-            if(tarifa.getClass().equals(tarifaDias)){
-                tieneDias = true;
-                tarifaDias = (TarifaDias) tarifa;
-            }else if(tarifa.getClass().equals(tarifaHoras)){
-                tieneHoras=true;
-                tarifaHoras = (TarifaHoras) tarifa;
-            }
-        }*/
+
         float importe=0;
         Calendar fechaIni = Calendar.getInstance();
         for(Llamada llamada : llamadas){
@@ -49,13 +36,6 @@ public class ControladorFactura implements Serializable {
             if(llamada.getFecha().before(fechaIni)){
                 fechaIni = llamada.getFecha();
             }
-            /*if(tieneDias && tarifaDias.getDia()==llamada.getFecha().getTime().getDay()){
-                importe += llamada.getDuracion()*tarifaDias.getPrecio();
-            }else if (tieneHoras && llamada.getFecha().getTime().getHours()>= tarifaHoras.getHoraIni() && llamada.getFecha().getTime().getHours()<= tarifaHoras.getHoraFin()){
-                importe += llamada.getDuracion()*tarifaHoras.getPrecio();
-            }else{
-                importe += llamada.getDuracion()*tarifaBasica.getPrecio();
-            }*/
         }
         System.out.println("El importe de la factura es: " + importe);
         String codfac = String.valueOf(listaFacturas.size()+1);
@@ -66,11 +46,16 @@ public class ControladorFactura implements Serializable {
     }
 
     public Factura getFacturaCodigo(String codfac) throws FacturaNoExisteException {
+        if(!mapaFactuarsCod.containsKey(codfac)){
+            System.out.println("No existe la factura");
+        }
         return mapaFactuarsCod.get(codfac);
     }
 
     public String listarFacturas(){
-        //System.out.println(mapaFactuarsCod.toString());
+        if(mapaFactuarsCod.isEmpty()){
+            System.out.println("No hay facturas disponibles");
+        }
         return  mapaFactuarsCod.toString();
     }
 

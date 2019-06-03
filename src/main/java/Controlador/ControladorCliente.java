@@ -41,9 +41,13 @@ public class ControladorCliente implements Serializable {
     }
     public void anyadeClietne(Cliente cliente){
         String nif = cliente.getNIF();
-        mapaClientes.put(nif, cliente);
-        listaClietnes.add(cliente);
-        System.out.println("añadido");
+        if(!mapaClientes.containsKey(nif)) {
+            mapaClientes.put(nif, cliente);
+            listaClietnes.add(cliente);
+            System.out.println("añadido");
+        }else{
+            System.out.println("El cliente ya existia");
+        }
 
     }
     public Cliente[] recuperarClientePorDNI(String nif) {
@@ -56,11 +60,14 @@ public class ControladorCliente implements Serializable {
         return unCliente;
     }
     public void borrarCliente(String NIF) throws ClienteNoExisteException{
-        System.out.println(NIF);
-        Cliente cli = recuperarClientePorDNI(NIF)[0];
-        mapaClientes.remove(NIF);
-        listaClietnes.remove(cli);
-
+        if(mapaClientes.containsKey(NIF)){
+            Cliente cli = recuperarClientePorDNI(NIF)[0];
+            mapaClientes.remove(NIF);
+            listaClietnes.remove(cli);
+            System.out.println("Cliente eliminado");
+        }else{
+            System.out.println("El cliente no exisitia");
+        }
     }
 
     public void cambiaTarifa(String NIF, ArrayList<Tarifa> tarifa) throws ClienteNoExisteException{
@@ -76,17 +83,6 @@ public class ControladorCliente implements Serializable {
         listaTarifas.add(tarifa);
         cliente.setTarifa(listaTarifas);
     }
-
-    /*
-    public void anyadirTarifaDia(String nif, int dia){
-        Cliente cliente = mapaClientes.get(nif);
-        Tarifa padre = new TarifaBasica(0.15f);
-        ArrayList<Tarifa> listaTarifas = cliente.getTarifa();
-        Tarifa tarifadia = fabricaTarifa.getTarifaDias(padre, 0.1f, dia);
-        listaTarifas.add(tarifadia);
-        cliente.setTarifa(listaTarifas);
-    }
-    */
     public void insertarTarifaDia(String DNI, int dia) throws  ClienteNoExisteException{
         Tarifa tarifaPadre = null;
         for(Tarifa iter :  this.getCliente(DNI).getTarifa()){
@@ -99,18 +95,25 @@ public class ControladorCliente implements Serializable {
     }
 
     public void listarClientes() {
-        for (Cliente c : listaClietnes) {
-            System.out.println("Cliente: " + c.toString());
-        }
+        if(mapaClientes.isEmpty()){
 
+        }else{
+            for (Cliente c : listaClietnes) {
+                System.out.println("Cliente: " + c.toString());
+            }
+        }
     }
 
     public String[] listadoClientes(){
         String[] salida = new String[listaClietnes.size()];
         int i=0;
-        for(Cliente c : this.listaClietnes){
-            salida[i] = c.toString();
-            i++;
+        if(mapaClientes.isEmpty()){
+            System.out.println("No hay clientes");
+        }else {
+            for (Cliente c : this.listaClietnes) {
+                salida[i] = c.toString();
+                i++;
+            }
         }
         return salida;
     }

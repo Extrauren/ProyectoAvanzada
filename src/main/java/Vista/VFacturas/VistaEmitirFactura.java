@@ -26,6 +26,8 @@ public class VistaEmitirFactura extends JDialog {
 
         //Elementos Graficos
 
+        JPanel vFactura = new JPanel();
+
         JLabel info = new JLabel("Introduce el NIF de un cliente para emitir una factura con sus llamadas: ",  SwingConstants.CENTER);
         this.add(info);
 
@@ -41,6 +43,11 @@ public class VistaEmitirFactura extends JDialog {
         aceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
+                if(texto.getText().equals("") || texto.getText().length() != 9) {
+                    JOptionPane.showMessageDialog(vFactura, "El dni no cumple con el formato 8N 1L :NNNNNNNNL");
+                    return;
+                }
                 try {
                     con.emitirFactura(texto.getText());
                 } catch (ClienteNoExisteException e) {

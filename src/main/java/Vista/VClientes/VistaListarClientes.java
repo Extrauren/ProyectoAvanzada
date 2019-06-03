@@ -25,24 +25,7 @@ public class VistaListarClientes extends JDialog {
 
         JList otro = new JList(con.listadoClientes());
         this.add(otro);
-        //JLabel clientes = new JLabel();
-        //this.add(clientes);
 
-
-        //JButton mostrar = new JButton("Mostrar");
-        //mostrar.setBackground(Color.cyan);
-        //this.add(mostrar);
-        //llamar al controlador
-
-
-        //zona action listeners
-
-        /*mostrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                modeloCliente.listarClientes();
-            }
-        });*/
     }
 
 

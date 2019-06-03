@@ -44,7 +44,7 @@ public class VRecuperarFactura extends JDialog {
                 try {
                     String nif = texto.getText();
                     String fact = con.recuperaFactura(nif);
-                    VentanaGenerica.ventanaMostrar("Factura de "+nif, fact);
+                    VentanaGenerica.ventanaMostrar("Factura de " + nif, fact);
                     dispose();
                 } catch (FacturaNoExisteException e) {
                     e.printStackTrace();

@@ -21,6 +21,8 @@ public class VistaAltaLlamada extends JDialog {
 
         //elementos grafcos
 
+        JPanel vLlamada = new JPanel();
+
         JLabel nif = new JLabel("Introdice el NIF: ", SwingConstants.CENTER);
         this.add(nif);
         JTextField texNif = new JTextField();
@@ -30,11 +32,6 @@ public class VistaAltaLlamada extends JDialog {
         this.add(telefono);
         JTextField textTelefono = new JTextField();
         this.add(textTelefono);
-
-        /*JLabel fechaAlta = new JLabel("Introduce la fecha: ", SwingConstants.CENTER);
-        this.add(fechaAlta);
-        JTextField textFecha = new JTextField("(dd/mm/yyyy)");
-        this.add(textFecha);*/
 
         JLabel duracion = new JLabel("Introduce la duracion: ", SwingConstants.CENTER);
         this.add(duracion);
@@ -53,6 +50,17 @@ public class VistaAltaLlamada extends JDialog {
         aceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
+                if(nif.getText().equals("") || nif.getText().length() != 9) {
+                    JOptionPane.showMessageDialog(vLlamada, "El dni no cumple con el formato 8N 1L :NNNNNNNNL");
+                    return;
+                }
+
+                if(telefono.getText().equals("") || telefono.getText().length() != 9) {
+                    JOptionPane.showMessageDialog(vLlamada, "El telefono tiene que tener 9 digitos");
+                    return;
+                }
+
                 con.altaLlamada(texNif.getText(), Integer.parseInt(textTelefono.getText()), Float.parseFloat(textDuracion.getText()));
                 dispose();
             }

@@ -24,6 +24,8 @@ public class VistaEliminarCliente extends JDialog {
 
         //Elementos graficos
 
+        JPanel vClientes = new JPanel();
+
         JLabel nif = new JLabel("NIF: ");
         this.add(nif);
 
@@ -39,11 +41,17 @@ public class VistaEliminarCliente extends JDialog {
         aceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
+                if(nif.getText().equals("") || nif.getText().length() != 9) {
+                    JOptionPane.showMessageDialog(vClientes, "El dni no cumple con el formato 8N 1L :NNNNNNNNL");
+                    return;
+                }
                 try {
                     con.borrarCliente(introduceNIF.getText());
-                } catch (ClienteNoExisteException e) {
+                }catch (ClienteNoExisteException e) {
                     e.printStackTrace();
                 }
+
             }
         });
     }

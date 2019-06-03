@@ -24,22 +24,6 @@ public class VListarFacturas extends JDialog {
         JList otro = new JList(con.listarFacturas());
         this.add(otro);
 
-        /*JButton aceptar = new JButton("Aceptar");
-        aceptar.setBackground(Color.yellow);
-        this.add(aceptar);
-
-        //zona action listener
-
-        aceptar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-                String[] fact = con.listarFacturas();
-                VentanaGenerica.ventanaMostrarLista("lista de facturas", fact);
-            }
-        });*/
-
-
 
     }
 }

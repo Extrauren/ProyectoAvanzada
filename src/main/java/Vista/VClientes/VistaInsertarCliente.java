@@ -27,28 +27,30 @@ public class VistaInsertarCliente extends JDialog {
 
         //Elementos graficos
 
+        JFrame vClientes = new JFrame();
+
         JLabel nombre = new JLabel("Nombre: ", SwingConstants.CENTER);
         this.add(nombre);
 
-        JTextField introducirNombre = new JTextField();
+        JTextField introducirNombre = new JTextField(10);
         this.add(introducirNombre);
 
         JLabel nif = new JLabel("NIF: ", SwingConstants.CENTER);
         this.add(nif);
 
-        JTextField introducirNIF = new JTextField();
+        JTextField introducirNIF = new JTextField(10);
         this.add(introducirNIF);
 
         JLabel dir = new JLabel("Direccion : ", SwingConstants.CENTER);
         this.add(dir);
 
-        JTextField introducirDir = new JTextField();
+        JTextField introducirDir = new JTextField(10);
         this.add(introducirDir);
 
         JLabel correo = new JLabel("Correo Electronico : ", SwingConstants.CENTER);
         this.add(correo);
 
-        JTextField introducirCorreo = new JTextField();
+        JTextField introducirCorreo = new JTextField(10);
         this.add(introducirCorreo);
 
 
@@ -69,10 +71,22 @@ public class VistaInsertarCliente extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                if(radioButton.isSelected()){
+                if(nombre.getText().equals("") || introducirCorreo.getText().equals("") ||  introducirDir.getText().equals("")) {
+                    JOptionPane.showMessageDialog(vClientes, "Los campos son obligatorios");
+                    return;
+                }
+
+                if(nif.getText().equals("") || nif.getText().length() != 9) {
+                    JOptionPane.showMessageDialog(vClientes, "El dni no cumple con el formato 8N 1L :NNNNNNNNL");
+                    return;
+                }
+
+                if(radioButton.isSelected() && !introducirNombre.getText().equals("") && !introducirNIF.getText().equals("") && !introducirDir.getText().equals("")
+                        && !introducirCorreo.getText().equals("") && !apellido.getText().equals("") ){
                     control.insertaClientePar(introducirNombre.getText(), introducirNIF.getText(), introducirDir.getText(), introducirCorreo.getText(), apellido.getText());
 
-                }else{
+                }else if(!radioButton.isSelected() && !introducirNombre.getText().equals("")
+                        && !introducirNIF.getText().equals("") && !introducirDir.getText().equals("") && !introducirCorreo.getText().equals("")){
                     control.insertarClienteEm(introducirNombre.getText(), introducirNIF.getText(), introducirDir.getText(), introducirCorreo.getText());
                 }
                 dispose();

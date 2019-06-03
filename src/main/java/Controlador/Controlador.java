@@ -33,6 +33,7 @@ public class Controlador implements Serializable {
     //todo lo relacionado con clientes
 
     public void insertaClientePar(String nombre, String dni, String dir, String correo, String apellido){
+
         Tarifa tarifa = fabricaTarifa.getTarifaBasica(0.15f);
         ArrayList<Tarifa> tarifas = new ArrayList<>();
         tarifas.add(tarifa);
