@@ -1,9 +1,14 @@
 package Vista.VClientes;
 
 import Controlador.Controlador;
+import Vista.VClientes.CambiarTarifa.VistaEliminaTarifas;
+import Vista.VClientes.CambiarTarifa.VistaTarifaDias;
+import Vista.VClientes.CambiarTarifa.VistaTarifaHoras;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class VistaCambiarTarifa extends JDialog {
 
@@ -38,7 +43,35 @@ public class VistaCambiarTarifa extends JDialog {
         JButton atras = new JButton("Atras");
         atras.setBackground(Color.cyan);
         this.add(atras);
-        
 
+        //zona action listeners
+
+        anyadirHoras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new VistaTarifaHoras().ejecutaTarifaHoras(con);
+            }
+        });
+
+        anyadirDias.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new VistaTarifaDias().ejecutaVistaTarifaDias(con);
+            }
+        });
+
+        borrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new VistaEliminaTarifas().ejecutaEliminarTarifasExtras(con);
+            }
+        });
+
+        atras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                dispose();
+            }
+        });
     }
 }

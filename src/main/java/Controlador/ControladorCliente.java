@@ -1,8 +1,11 @@
 package Controlador;
 
+
+import Controlador.Factory.FabricaTarifa;
 import Modelo.Cliente;
 import Modelo.Tarifas.Tarifa;
 import Controlador.Excepciones.ClienteNoExisteException;
+import Modelo.Tarifas.TarifaBasica;
 
 
 import java.io.Serializable;
@@ -11,7 +14,7 @@ import java.util.HashMap;
 
 public class ControladorCliente implements Serializable {
 
-
+    FabricaTarifa fabricaTarifa;
     HashMap<String, Cliente> mapaClientes = new HashMap<>();
     ArrayList<Cliente> listaClietnes = new ArrayList<>();
 
@@ -60,12 +63,39 @@ public class ControladorCliente implements Serializable {
 
     }
 
-    public void cambiaTarifa(String NIF, ArrayList<Tarifa> tarifa) throws  ClienteNoExisteException{   //Luego se cambia por la clase Tarifa
-        Cliente cliente;
-        cliente = mapaClientes.get(NIF);
+    public void cambiaTarifa(String NIF, ArrayList<Tarifa> tarifa) throws ClienteNoExisteException{
+        Cliente cliente= mapaClientes.get(NIF);
         cliente.setTarifa(tarifa);
         System.out.println(cliente.toString());
 
+    }
+
+    public void anyadirUnaTarifa(String nif, Tarifa tarifa){
+        Cliente cliente = mapaClientes.get(nif);
+        ArrayList<Tarifa> listaTarifas = cliente.getTarifa();
+        listaTarifas.add(tarifa);
+        cliente.setTarifa(listaTarifas);
+    }
+
+    /*
+    public void anyadirTarifaDia(String nif, int dia){
+        Cliente cliente = mapaClientes.get(nif);
+        Tarifa padre = new TarifaBasica(0.15f);
+        ArrayList<Tarifa> listaTarifas = cliente.getTarifa();
+        Tarifa tarifadia = fabricaTarifa.getTarifaDias(padre, 0.1f, dia);
+        listaTarifas.add(tarifadia);
+        cliente.setTarifa(listaTarifas);
+    }
+    */
+    public void insertarTarifaDia(String DNI, int dia) throws  ClienteNoExisteException{
+        Tarifa tarifaPadre = null;
+        for(Tarifa iter :  this.getCliente(DNI).getTarifa()){
+            if(iter.equals(this.getCliente(DNI).getTarifa().size()-1)){
+                tarifaPadre = iter;
+            }
+        }
+        Tarifa nueva = fabricaTarifa.getTarifaDias(tarifaPadre, 0.1f ,dia);
+        this.getCliente(DNI).getTarifa().add(nueva);
     }
 
     public void listarClientes() {

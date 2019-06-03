@@ -29,7 +29,9 @@ public class Controlador implements Serializable {
         this.fabricaCliente = new FabricaCliente();
         this.fabricaTarifa = new FabricaTarifa();
     }
-    //t odo lo relacionado con clientes
+
+    //todo lo relacionado con clientes
+
     public void insertaClientePar(String nombre, String dni, String dir, String correo, String apellido){
         Tarifa tarifa = fabricaTarifa.getTarifaBasica(0.15f);
         ArrayList<Tarifa> tarifas = new ArrayList<>();
@@ -63,8 +65,17 @@ public class Controlador implements Serializable {
         return controladorCliente.recuperarClientePorDNI(nif);
     }
 
+    public void anyadirUnaTarifa(String nif, Tarifa tarifa){ controladorCliente.anyadirUnaTarifa(nif, tarifa);}
 
-    //t odo lo relacionado con facturas
+    public void anyadirTarifaDia(String nif, int dia){
+        try {
+            controladorCliente.insertarTarifaDia(nif, dia);
+        } catch (ClienteNoExisteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //todo lo relacionado con facturas
     public void emitirFactura(String texto) throws ClienteNoExisteException {
         controladorFactura.emitirFactura(texto);
     }
@@ -92,8 +103,7 @@ public class Controlador implements Serializable {
     }
 
 
-    //llamadas
-
+    //todo lo relacionado con llamadas
     public String[] muestraLlamadaCliente(String dat){
         ArrayList<Llamada> lista = controladorLlamada.muestraLlamadaCliente(dat);
 
@@ -108,8 +118,6 @@ public class Controlador implements Serializable {
             aux[i] = lista.get(i).toString();
         }
         return aux;
-
-
     }
 
     public void altaLlamada(String dni, int num, Float dur){

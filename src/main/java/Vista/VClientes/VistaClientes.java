@@ -52,7 +52,7 @@ public class VistaClientes extends JDialog implements Serializable {
         this.add(eliminar);
         this.add(listar);
         this.add(listaruno);
-        //this.add(cambiarTarifa);
+        this.add(cambiarTarifa);
         this.add(cancelar);
 
         this.setModal(true);
