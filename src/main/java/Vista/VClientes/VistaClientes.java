@@ -1,7 +1,6 @@
 package Vista.VClientes;
 
 import Controlador.Controlador;
-import Modelo.ModeloCliente;
 
 import javax.swing.*;
 import java.awt.*;

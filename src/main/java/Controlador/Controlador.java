@@ -1,13 +1,13 @@
 package Controlador;
 
-import Controlador.Tarifas.Tarifa;
-import Modelo.Excepciones.ClienteNoExisteException;
-import Modelo.Excepciones.FacturaNoExisteException;
-import Modelo.Factory.FabricaCliente;
-import Modelo.Factory.FabricaTarifa;
-import Modelo.ModeloCliente;
-import Modelo.ModeloFactura;
-import Modelo.ModeloLlamada;
+import Modelo.Cliente;
+import Modelo.Factura;
+import Modelo.Llamada;
+import Modelo.Tarifas.Tarifa;
+import Controlador.Excepciones.ClienteNoExisteException;
+import Controlador.Excepciones.FacturaNoExisteException;
+import Controlador.Factory.FabricaCliente;
+import Controlador.Factory.FabricaTarifa;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,16 +15,16 @@ import java.util.Calendar;
 
 public class Controlador implements Serializable {
 
-    private ModeloCliente modeloCliente;
-    private ModeloFactura modeloFactura;
-    private ModeloLlamada modeloLlamada;
+    private ControladorCliente controladorCliente;
+    private ControladorFactura controladorFactura;
+    private ControladorLlamada controladorLlamada;
     private FabricaCliente fabricaCliente;
     private FabricaTarifa fabricaTarifa;
 
     public Controlador(){
-        modeloCliente = new ModeloCliente();
-        modeloLlamada = new ModeloLlamada();
-        modeloFactura = new ModeloFactura(modeloCliente, modeloLlamada);
+        controladorCliente = new ControladorCliente();
+        controladorLlamada = new ControladorLlamada();
+        controladorFactura = new ControladorFactura(controladorCliente, controladorLlamada);
 
         this.fabricaCliente = new FabricaCliente();
         this.fabricaTarifa = new FabricaTarifa();
@@ -37,7 +37,7 @@ public class Controlador implements Serializable {
         Cliente cliente;
 
         cliente = fabricaCliente.getClienteParticular(nombre,dni, dir, correo, Calendar.getInstance(),tarifas, apellido);
-        modeloCliente.anyadeClietne(cliente);
+        controladorCliente.anyadeClietne(cliente);
     }
 
     public void insertarClienteEm(String nombre, String dni, String dir, String correo){
@@ -47,30 +47,30 @@ public class Controlador implements Serializable {
         Cliente cliente;
 
         cliente = fabricaCliente.getClienteEmpresa(nombre,dni, dir, correo, Calendar.getInstance(),tarifas);
-        modeloCliente.anyadeClietne(cliente);
+        controladorCliente.anyadeClietne(cliente);
     }
 
     public void borrarCliente(String nif) throws ClienteNoExisteException {
-        modeloCliente.borrarCliente(nif);
+        controladorCliente.borrarCliente(nif);
 
     }
 
     public String[] listadoClientes(){
-        return modeloCliente.listadoClientes();
+        return controladorCliente.listadoClientes();
     }
 
     public Cliente[] recuperaClienteDni(String nif){
-        return modeloCliente.recuperarClientePorDNI(nif);
+        return controladorCliente.recuperarClientePorDNI(nif);
     }
 
 
     //t odo lo relacionado con facturas
     public void emitirFactura(String texto) throws ClienteNoExisteException {
-        modeloFactura.emitirFactura(texto);
+        controladorFactura.emitirFactura(texto);
     }
 
     public String[] listarFacturas(){
-        ArrayList<Factura> lista = modeloFactura.getListaFacturas();
+        ArrayList<Factura> lista = controladorFactura.getListaFacturas();
         if(lista==null || lista.size()==0){
             String[] aux = new String[1];
             aux[0] = "lista vacia";
@@ -85,7 +85,7 @@ public class Controlador implements Serializable {
     }
 
     public String recuperaFactura(String dat) throws FacturaNoExisteException {
-        Factura aux = modeloFactura.getFacturaCodigo(dat);
+        Factura aux = controladorFactura.getFacturaCodigo(dat);
         if(aux==null)
             return "No existe esta factura";
         return aux.toString();
@@ -95,7 +95,7 @@ public class Controlador implements Serializable {
     //llamadas
 
     public String[] muestraLlamadaCliente(String dat){
-        ArrayList<Llamada> lista = modeloLlamada.muestraLlamadaCliente(dat);
+        ArrayList<Llamada> lista = controladorLlamada.muestraLlamadaCliente(dat);
 
         if(lista==null){
             String[] aux = new String[1];
@@ -113,6 +113,6 @@ public class Controlador implements Serializable {
     }
 
     public void altaLlamada(String dni, int num, Float dur){
-        modeloLlamada.altaLLamada(dni, num, dur);
+        controladorLlamada.altaLLamada(dni, num, dur);
     }
 }

@@ -1,19 +1,12 @@
 package Vista.VClientes;
 
 
-import Controlador.Cliente;
 import Controlador.Controlador;
-import Controlador.Tarifas.Tarifa;
-import Modelo.Factory.FabricaCliente;
-import Modelo.Factory.FabricaTarifa;
-import Modelo.ModeloCliente;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Calendar;
 
 public class VistaInsertarCliente extends JDialog {
 

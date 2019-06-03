@@ -1,8 +1,7 @@
 package Vista.VFacturas;
 
 import Controlador.Controlador;
-import Modelo.Excepciones.FacturaNoExisteException;
-import Modelo.ModeloFactura;
+import Controlador.Excepciones.FacturaNoExisteException;
 import Vista.VentanaGenerica;
 
 import javax.swing.*;

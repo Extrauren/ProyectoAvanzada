@@ -1,7 +1,6 @@
 package Vista.VLlamadas;
 
 import Controlador.Controlador;
-import Modelo.ModeloLlamada;
 
 import javax.swing.*;
 import java.awt.*;

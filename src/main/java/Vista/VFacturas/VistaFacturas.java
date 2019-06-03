@@ -1,7 +1,6 @@
 package Vista.VFacturas;
 
 import Controlador.Controlador;
-import Modelo.ModeloFactura;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,13 +1,9 @@
 package Vista.VFacturas;
 
 import Controlador.Controlador;
-import Modelo.ModeloFactura;
-import Vista.VentanaGenerica;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class VListarFacturas extends JDialog {
 

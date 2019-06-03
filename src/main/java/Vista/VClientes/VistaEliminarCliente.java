@@ -1,10 +1,8 @@
 package Vista.VClientes;
 
 import Controlador.Controlador;
-import Modelo.Excepciones.ClienteNoExisteException;
-import Modelo.ModeloCliente;
+import Controlador.Excepciones.ClienteNoExisteException;
 
-import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
